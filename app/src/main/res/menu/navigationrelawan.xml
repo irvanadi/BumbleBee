@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_verif"
+        android:iconTint="#4698d3"
+        android:title="Home"/>
+
+    <item
+        android:id="@+id/navigation_relawan"
+        android:icon="@drawable/ic_verif"
+        android:title="Relawan" />
+
+    <item
+        android:id="@+id/navigation_penerima"
+        android:icon="@drawable/ic_verif"
+        android:title="Penerima" />
+
+    <item
+        android:id="@+id/navigation_akun"
+        android:title="Akun" />
+</menu>
