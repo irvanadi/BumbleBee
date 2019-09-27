@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "229925978780",
+    "firebase_url": "https://foodheroes-bumblebee.firebaseio.com",
+    "project_id": "foodheroes-bumblebee",
+    "storage_bucket": "foodheroes-bumblebee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:229925978780:android:fa8c5c05d739dff09f6359",
+        "android_client_info": {
+          "package_name": "com.example.foodheroes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "229925978780-7vr4bjmg5n1608l8vftso6grgngdfucn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.foodheroes",
+            "certificate_hash": "2fbf1d8236fdfc69c229d30cd82eb4bc4b69447b"
+          }
+        },
+        {
+          "client_id": "229925978780-lqojo0b4lkm9gkhhna0h5mb3ads83hn0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_QB2yo_TrLXEoYuO9lCY-I5NPnEV5pMM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "229925978780-lqojo0b4lkm9gkhhna0h5mb3ads83hn0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
