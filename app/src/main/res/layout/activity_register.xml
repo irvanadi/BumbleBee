@@ -70,7 +70,7 @@
 
         <AutoCompleteTextView
             android:id="@+id/txtRePassword"
-            android:hint="No. Telepon"
+            android:hint="Confirm Password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />

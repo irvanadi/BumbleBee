@@ -1,20 +1,34 @@
 package com.example.foodheroes;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
     AutoCompleteTextView txtNoTelp, txtPassword;
     Button btnLogin;
     FirebaseAuth mAuth;
+    FirebaseUser UID;
+    DatabaseReference UserReff;
+    FirebaseDatabase mfirebaseDatabase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
 
         txtNoTelp = findViewById(R.id.txtNumberPhone);
         txtPassword = findViewById(R.id.txtPassword);
+        UserReff = FirebaseDatabase.getInstance().getReference("User");
 
         findViewById(R.id.btnLogin).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,8 +49,15 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
 
+        findViewById(R.id.txtToRegist2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
     @Override
     protected void onStart() {
         super.onStart();
@@ -46,4 +68,5 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
 }

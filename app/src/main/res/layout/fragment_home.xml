@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".HomeFragment"
+    >
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+            <TextView
+                android:id="@+id/txtApakami"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="#00beed"
+                android:textStyle="bold"
+                android:lineSpacingExtra="7sp"
+                android:text="Apa yang kami lakukan?"
+                android:padding="16dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+            <TextView
+                android:id="@+id/txtDescription"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="#000000"
+                android:lineSpacingExtra="8sp"
+                android:padding="16dp"
+                android:layout_marginStart="16dp"
+                android:text="Menampung sisa - sisa makanan yang akan diberikan kepada yang lebih membutuhkan, dan sebelum dikirimpun akan diberlakukan SOP makanan, agar dibuktikan bahwa makanan tersebut memang layak untuk dimakan."
+                app:layout_constraintTop_toBottomOf="@id/txtApakami"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+            <ImageView
+                android:contentDescription="Car"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/img_car"
+                app:layout_constraintTop_toTopOf="@id/txtDescription"
+                app:layout_constraintBottom_toBottomOf="@id/txtDescription"
+                app:layout_constraintStart_toEndOf="@id/txtDescription"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <ImageView
+                android:id="@+id/imgSeparator"
+                android:contentDescription="Separator"
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                android:background="#e5e5e5"
+                app:layout_constraintTop_toBottomOf="@id/txtDescription"
+                />
+
+            <TextView
+                android:id="@+id/txtJudulGrafik"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#00beed"
+                android:lineSpacingExtra="7sp"
+                android:typeface="sans"
+                android:text="Grafik Food Heroes"
+                android:padding="16dp"
+                app:layout_constraintTop_toBottomOf="@id/imgSeparator"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/chrRelawan"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                app:layout_constraintTop_toBottomOf="@id/txtJudulGrafik"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <ImageView
+                android:id="@+id/imgSeparator2"
+                android:contentDescription="Separator"
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                android:background="#e5e5e5"
+                app:layout_constraintTop_toBottomOf="@id/chrRelawan"
+                />
+
+            <TextView
+                android:id="@+id/txtUsulan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:typeface="sans"
+                android:textColor="#00beed"
+                android:lineSpacingExtra="7sp"
+                android:textStyle="bold"
+                android:text="Ingin Mengusulkan \nPenerima?"
+                android:padding="32dp"
+                app:layout_constraintTop_toBottomOf="@id/imgSeparator2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+            <ImageView
+                android:id="@+id/imgHandsHelp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/hands_helping_solid"
+                app:layout_constraintTop_toBottomOf="@id/imgSeparator2"
+                app:layout_constraintStart_toEndOf="@id/txtUsulan"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="24dp"/>
+
+            <TextView
+                android:id="@+id/txtUsulPenerima"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:typeface="sans"
+                android:textColor="#00beed"
+                android:lineSpacingExtra="7sp"
+                android:text="Usul \nPenerima"
+                android:layout_marginTop="4dp"
+                android:gravity="center_horizontal"
+                app:layout_constraintTop_toBottomOf="@id/imgHandsHelp"
+                app:layout_constraintStart_toStartOf="@id/imgHandsHelp"
+                app:layout_constraintEnd_toEndOf="@id/imgHandsHelp"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </ScrollView>
+
+
+</FrameLayout>
