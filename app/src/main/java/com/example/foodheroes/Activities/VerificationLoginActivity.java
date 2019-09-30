@@ -1,4 +1,4 @@
-package com.example.foodheroes;
+package com.example.foodheroes.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.foodheroes.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
@@ -21,12 +22,13 @@ import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.concurrent.TimeUnit;
 
-public class VerificationLogin extends AppCompatActivity {
+public class VerificationLoginActivity extends AppCompatActivity {
 
     EditText txtVerifCode;
     FirebaseAuth mAuth;
     String VerificationId, NumberPhone;
     Button btnVerifCode;
+    private PhoneAuthProvider.ForceResendingToken mResendToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,13 @@ public class VerificationLogin extends AppCompatActivity {
                 verifySignInCode(txtVerifCode.getText().toString());
             }
         });
+
+        findViewById(R.id.btnReSend).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reSendVerificatioonCode(NumberPhone);
+            }
+        });
     }
 
     private void verifySignInCode(String verifCode){
@@ -62,7 +71,7 @@ public class VerificationLogin extends AppCompatActivity {
                     //here you can open new activity
                     Toast.makeText(getApplicationContext(),
                             "Login Successfull", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(VerificationLogin.this, MainActivity.class);
+                    Intent intent = new Intent(VerificationLoginActivity.this, MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 } else {
@@ -76,7 +85,6 @@ public class VerificationLogin extends AppCompatActivity {
     }
 
     private void sendVerificationCode(String numberPhone){
-        Toast.makeText(VerificationLogin.this, numberPhone, Toast.LENGTH_SHORT).show();
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 numberPhone,        // Phone number to verify
                 60,                 // Timeout duration
@@ -85,17 +93,31 @@ public class VerificationLogin extends AppCompatActivity {
                 mCallbacks);        // OnVerificationStateChangedCallbacks
 
     }
+
+    private void reSendVerificatioonCode(String numberPhone){
+        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                numberPhone,        // Phone number to verify
+                60,                 // Timeout duration
+                TimeUnit.SECONDS,   // Unit of timeout
+                this,               // Activity (for callback binding)
+                mCallbacks,
+                mResendToken);        // OnVerificationStateChangedCallbacks
+
+    }
+
     PhoneAuthProvider.OnVerificationStateChangedCallbacks
             mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
         @Override
         public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
-            String Code = phoneAuthCredential.getSmsCode();
-
-            if(Code != null){
-                txtVerifCode.setText(Code);
-                signInWithPhoneAuthCredential(phoneAuthCredential);
-            }
+//            String Code = phoneAuthCredential.getSmsCode();
+//
+//            if(Code != null){
+//                txtVerifCode.setText(Code);
+//                signInWithPhoneAuthCredential(phoneAuthCredential);
+//            } else {
+//                Toast.makeText(VerificationLoginActivity.this, "Code Verifikasi Salah", Toast.LENGTH_SHORT).show();
+//            }
         }
 
         @Override
@@ -107,6 +129,7 @@ public class VerificationLogin extends AppCompatActivity {
         public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
             super.onCodeSent(s, forceResendingToken);
             VerificationId = s;
+            mResendToken = forceResendingToken;
         }
     };
 }

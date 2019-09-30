@@ -1,4 +1,4 @@
-package com.example.foodheroes;
+package com.example.foodheroes.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Toast;
 
+import com.example.foodheroes.Models.User;
+import com.example.foodheroes.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 

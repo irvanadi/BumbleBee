@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shadow_bg"
+    android:layout_marginEnd="36dp">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="320dp"
+        android:layout_height="158dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="10dp"
+        app:cardMaxElevation="20dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txtNamaMitra"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Harverst Bakery"
+                android:paddingStart="16dp"
+                android:paddingTop="16dp"
+                android:textSize="16sp"
+                android:textColor="#000"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+            <TextView
+                android:id="@+id/txtTanggal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="15 Desember 2019"
+                android:textColor="#000"
+                android:paddingStart="16dp"
+                android:textSize="18sp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@id/txtNamaMitra"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+            <Button
+                android:id="@+id/btnRelawan"
+                android:layout_width="110dp"
+                android:layout_height="29dp"
+                android:background="@drawable/img_solid_blue"
+                android:layout_marginTop="8dp"
+                android:text=" 4 Relawan"
+                android:textColor="#fff"
+                android:layout_marginStart="18dp"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:drawableStart="@drawable/ic_group"
+                android:textAllCaps="false"
+                app:layout_constraintTop_toBottomOf="@id/txtTanggal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/txtTanggal"/>
+
+            <TextView
+                android:id="@+id/txtDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DETAIL"
+                android:textColor="#4d8af0"
+                android:paddingStart="16dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@id/btnRelawan"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:id="@+id/txtDaftar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DAFTAR"
+                android:textColor="#4d8af0"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="48dp"
+                app:layout_constraintTop_toBottomOf="@id/btnRelawan"
+                app:layout_constraintStart_toEndOf="@id/txtDetail"/>
+
+            <ImageView
+                android:contentDescription="Gambar"
+                android:id="@+id/imgMitra"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:src="@drawable/food"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/txtDaftar"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

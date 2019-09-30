@@ -1,26 +1,32 @@
-package com.example.foodheroes;
+package com.example.foodheroes.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 
+import com.example.foodheroes.Fragments.AccountFragment;
+import com.example.foodheroes.Fragments.HomeFragment;
+import com.example.foodheroes.Fragments.PenerimaFragment;
+import com.example.foodheroes.R;
+import com.example.foodheroes.Fragments.RelawanFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
+    Toolbar mToolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        mToolbar = findViewById(R.id.topToolbar);
+        setSupportActionBar(mToolbar);
         BottomNavigationView navigationView = findViewById(R.id.navRelawan);
         navigationView.setOnNavigationItemSelectedListener(this);
+
         loadFragment(new HomeFragment());
 
     }

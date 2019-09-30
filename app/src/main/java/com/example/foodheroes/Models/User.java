@@ -1,4 +1,4 @@
-package com.example.foodheroes;
+package com.example.foodheroes.Models;
 
 public class User {
     String Email, NumberPhone, Password;

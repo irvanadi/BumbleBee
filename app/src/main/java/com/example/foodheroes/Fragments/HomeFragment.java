@@ -1,20 +1,18 @@
-package com.example.foodheroes;
+package com.example.foodheroes.Fragments;
 
-import android.content.Context;
 import android.graphics.Color;
-import android.media.Image;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.foodheroes.Fragments.PenerimaFragment;
+import com.example.foodheroes.R;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.XAxis;
@@ -23,26 +21,19 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
-import com.github.mikephil.charting.model.GradientColor;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.lang.reflect.Array;
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
+import java.util.Objects;
 
 public class HomeFragment extends Fragment {
 
-    @BindView(R.id.txtUsulPenerima)
-    TextView txtUsul;
-
-    @BindView(R.id.imgHandsHelp)
-    ImageView imgHands;
-
     LineChart chrtRelawan;
+
+    TextView txtUsul;
+    ImageView imgHands;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -54,12 +45,15 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View view =inflater.inflate(R.layout.fragment_home, container, false);
-        ButterKnife.bind(this,view);
-
+//        ButterKnife.bind(this,view);
+        txtUsul = view.findViewById(R.id.txtUsulPenerima);
+        imgHands = view.findViewById(R.id.imgHandsHelp);
         chrtRelawan = view.findViewById(R.id.chrRelawan);
         chrtRelawan.setDragEnabled(true);
         chrtRelawan.setScaleEnabled(false);
         chrtRelawan.setDescription(null);
+
+        Objects.requireNonNull(getActivity()).setTitle("Home");
 
         ArrayList<Entry> yValues = new ArrayList<>();
 
@@ -87,6 +81,19 @@ public class HomeFragment extends Fragment {
         xAxis.setValueFormatter(new MyXAxisValueFormatter(values));
         xAxis.setGranularity(1);
 
+        view.findViewById(R.id.imgHandsHelp).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToPenerima();
+            }
+        });
+
+        view.findViewById(R.id.txtUsulPenerima).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToPenerima();
+            }
+        });
         return view;
     }
 
@@ -103,9 +110,8 @@ public class HomeFragment extends Fragment {
         }
     }
 
+    private void goToPenerima(){
 
-    @OnClick(R.id.txtUsulPenerima)
-    public void goToPenerima2(){
         BottomNavigationView navigationView = getActivity().findViewById(R.id.navRelawan);
         navigationView.setSelectedItemId(R.id.navigation_penerima);
 
@@ -115,19 +121,6 @@ public class HomeFragment extends Fragment {
                 .addToBackStack(null)
                 .commit();
 
-    }
-
-    @OnClick(R.id.imgHandsHelp)
-    public void goToPenerima(){
-
-        BottomNavigationView navigationView = getActivity().findViewById(R.id.navRelawan);
-        navigationView.setSelectedItemId(R.id.navigation_penerima);
-        
-        PenerimaFragment nextFrag= new PenerimaFragment();
-        getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragmentContainer, nextFrag, "RelawanFragment")
-                .addToBackStack(null)
-                .commit();
     }
 
 }

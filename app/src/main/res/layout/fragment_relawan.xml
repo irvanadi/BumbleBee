@@ -1,14 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RelawanFragment">
+    tools:context=".Fragments.RelawanFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imgSeparator"
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                android:background="#e5e5e5"
+                android:contentDescription="Separator"
+                app:layout_constraintTop_toBottomOf="@id/appbarCalendar" />
+
+            <ImageView
+                android:id="@+id/imgSeparator2"
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                android:layout_marginTop="24dp"
+                android:background="#e5e5e5"
+                android:contentDescription="Separator2"
+                app:layout_constraintTop_toBottomOf="@id/recDetailMitra" />
+
+            <ImageView
+                android:id="@+id/imgKue"
+                android:layout_width="88dp"
+                android:layout_height="88dp"
+                android:background="@drawable/bread"
+                android:src="@drawable/gradient_buah"
+                app:layout_constraintTop_toBottomOf="@id/txtKategori"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="32dp"/>
+
+            <ImageView
+                android:id="@+id/imgBuah"
+                android:layout_width="88dp"
+                android:layout_height="88dp"
+                android:background="@drawable/summer_salad"
+                android:src="@drawable/gradient_buah"
+                app:layout_constraintTop_toBottomOf="@id/txtKategori"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="32dp"/>
+
+            <ImageView
+                android:id="@+id/imgMakanan"
+                android:layout_width="88dp"
+                android:layout_height="88dp"
+                android:background="@drawable/food"
+                android:src="@drawable/gradient_buah"
+                app:layout_constraintTop_toBottomOf="@id/txtKategori"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+
+            <TextView
+                android:id="@+id/txtKategori"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="7sp"
+                android:padding="16dp"
+                android:text="Kategori"
+                android:textColor="#00beed"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imgSeparator2" />
+
+            <TextView
+                android:id="@+id/txtKue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kue \nBasah"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                app:layout_constraintTop_toTopOf="@id/imgBuah"
+                app:layout_constraintBottom_toBottomOf="@id/imgKue"
+                app:layout_constraintStart_toStartOf="@id/imgKue"
+                app:layout_constraintEnd_toEndOf="@id/imgKue"/>
+
+            <TextView
+                android:id="@+id/txtMakanan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Makanan \n Berat"
+                android:textColor="@android:color/white"
+                android:gravity="center"
+                app:layout_constraintTop_toTopOf="@id/imgMakanan"
+                app:layout_constraintBottom_toBottomOf="@id/imgMakanan"
+                app:layout_constraintStart_toStartOf="@id/imgMakanan"
+                app:layout_constraintEnd_toEndOf="@id/imgMakanan"/>
+
+            <TextView
+                android:id="@+id/txtBuah"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Buah"
+                android:textColor="@android:color/white"
+                app:layout_constraintTop_toTopOf="@id/imgBuah"
+                app:layout_constraintBottom_toBottomOf="@id/imgBuah"
+                app:layout_constraintStart_toStartOf="@id/imgBuah"
+                app:layout_constraintEnd_toEndOf="@id/imgBuah"/>
+
+            <TextView
+                android:id="@+id/txtAyoFoodHeroes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="7sp"
+                android:padding="16dp"
+                android:text="Ayo Jadi Food Heroes"
+                android:textColor="#00beed"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imgSeparator" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recDetailMitra"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtAyoFoodHeroes" />
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appbarCalendar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <devs.mulham.horizontalcalendar.HorizontalCalendarView
+                    android:id="@+id/calendarView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    app:textColorNormal="#000"
+                    app:textColorSelected="#00beed" />
+
+            </com.google.android.material.appbar.AppBarLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </FrameLayout>
