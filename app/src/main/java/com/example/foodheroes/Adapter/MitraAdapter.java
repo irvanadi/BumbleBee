@@ -1,26 +1,23 @@
 package com.example.foodheroes.Adapter;
 
-import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.foodheroes.Activities.DetailMitraActivity;
+import com.example.foodheroes.Activities.MainActivity;
 import com.example.foodheroes.Models.Mitra;
 import com.example.foodheroes.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MitraAdapter extends RecyclerView.Adapter<MitraAdapter.ViewHolder> {
 
@@ -54,13 +51,14 @@ public class MitraAdapter extends RecyclerView.Adapter<MitraAdapter.ViewHolder> 
         return results.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView txtnamaMitra, txtTanggal, txtDetail, btnRelawan, txtDaftar;
         private ImageView imgMitra;
 
         public ViewHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
 
             txtnamaMitra = itemView.findViewById(R.id.txtNamaMitra);
             txtTanggal = itemView.findViewById(R.id.txtTanggal);
@@ -69,8 +67,33 @@ public class MitraAdapter extends RecyclerView.Adapter<MitraAdapter.ViewHolder> 
             txtDaftar = itemView.findViewById(R.id.txtDaftar);
             imgMitra = itemView.findViewById(R.id.imgMitra);
 
+            txtDetail.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    toDetails();
+                }
+            });
 
         }
 
+        private void toDetails(){
+            MainActivity mainActivity = (MainActivity) itemView.getContext();
+
+            Intent intent = new Intent(mainActivity, DetailMitraActivity.class);
+            mainActivity.startActivity(intent);
+
+//            DetailRelawanFragment nextFrag = new DetailRelawanFragment();
+//            RelawanFragment thisFrag = new RelawanFragment();
+//            mainActivity.getSupportFragmentManager().beginTransaction()
+//                    .replace(R.id.fragmentContainerNoNavBar, nextFrag, "DetailRelawanFragment")
+//                    .hide(thisFrag)
+//                    .addToBackStack(null)
+//                    .commit();
+        }
+
+        @Override
+        public void onClick(View v) {
+
+        }
     }
 }

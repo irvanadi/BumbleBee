@@ -115,7 +115,7 @@ public class HomeFragment extends Fragment {
         BottomNavigationView navigationView = getActivity().findViewById(R.id.navRelawan);
         navigationView.setSelectedItemId(R.id.navigation_penerima);
 
-        PenerimaFragment nextFrag= new PenerimaFragment();
+        PenerimaFragment nextFrag = new PenerimaFragment();
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentContainer, nextFrag, "RelawanFragment")
                 .addToBackStack(null)

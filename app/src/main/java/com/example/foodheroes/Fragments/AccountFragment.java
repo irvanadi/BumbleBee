@@ -13,12 +13,16 @@ import android.view.ViewGroup;
 
 import com.example.foodheroes.Activities.LoginActivity;
 import com.example.foodheroes.Activities.MainActivity;
+import com.example.foodheroes.Models.EventMitra;
 import com.example.foodheroes.Models.Mitra;
 import com.example.foodheroes.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Objects;
 
 public class AccountFragment extends Fragment {
@@ -26,6 +30,9 @@ public class AccountFragment extends Fragment {
 
     DatabaseReference MitraReff;
     Mitra mitra;
+    EventMitra eventMitra;
+
+
     public AccountFragment() {
         // Required empty public constructor
     }
@@ -38,15 +45,31 @@ public class AccountFragment extends Fragment {
 
         Objects.requireNonNull(getActivity()).setTitle("Home");
 
+        Date date = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
 //        mitra = new Mitra();
 //        MitraReff = FirebaseDatabase.getInstance().getReference().child("Mitra");
 //        mitra.setNamaMitra("");
 //        mitra.setAlamatMitra("Jl. Tropodo");
 //        mitra.setDeskripsiMitra("Kue Enak Sehat Bergizi");
-//        mitra.setKategori("Kue Basah");
+//        mitra.setKategori("Kue");
 //        MitraReff.push().setValue(mitra);
 
+//        eventMitra = new EventMitra();
+//        MitraReff = FirebaseDatabase.getInstance().getReference().child("EventMitra");
+//        eventMitra.setNamaMitra("Holland Bakery");
+//        eventMitra.setAlamatMitra("Jl. Tropodo");
+//        eventMitra.setDeskripsiMitra("Kue Enak Sehat Bergizi");
+//        eventMitra.setKategori("Kue");
+//        eventMitra.setTanggal(dateFormat.format(date));
+//        eventMitra.setAlamatPenerima("Jl Magersari");
+//        eventMitra.setRelawan("4");
+//        eventMitra.setPorsi("30");
+//        eventMitra.setKoor("1");
+//        eventMitra.setNamaPenerima("Siti Halim");
 
+        MitraReff.push().setValue(eventMitra);
 
         view.findViewById(R.id.btnLogout).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +80,7 @@ public class AccountFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
         return view;
     }
 

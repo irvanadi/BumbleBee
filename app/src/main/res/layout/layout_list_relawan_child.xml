@@ -71,6 +71,8 @@
                 android:textColor="#4d8af0"
                 android:paddingStart="16dp"
                 android:layout_marginTop="16dp"
+                android:clickable="true"
+                android:focusable="true"
                 app:layout_constraintTop_toBottomOf="@id/btnRelawan"
                 app:layout_constraintStart_toStartOf="parent"/>
 
@@ -81,6 +83,8 @@
                 android:text="DAFTAR"
                 android:textColor="#4d8af0"
                 android:layout_marginTop="16dp"
+                android:clickable="true"
+                android:focusable="true"
                 android:layout_marginStart="48dp"
                 app:layout_constraintTop_toBottomOf="@id/btnRelawan"
                 app:layout_constraintStart_toEndOf="@id/txtDetail"/>

@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentContainer;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 import com.example.foodheroes.Adapter.MitraAdapter;
 import com.example.foodheroes.Models.Mitra;
 import com.example.foodheroes.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -52,9 +54,12 @@ public class RelawanFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_relawan, container, false);
-        Objects.requireNonNull(getActivity()).setTitle("Relawan");
 
+        Objects.requireNonNull(getActivity()).setTitle("Relawan");
         MitraReff = FirebaseDatabase.getInstance().getReference().child("Mitra");
+
+        BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.navRelawan);
+        bottomNavigationView.setVisibility(View.VISIBLE);
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         /* starts before 1 month from now */
