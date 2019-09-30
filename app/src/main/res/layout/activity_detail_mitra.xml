@@ -6,10 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".Activities.DetailMitraActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recDetailListMitra"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.AppBarLayout
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/appBarDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/topToolbarDetail"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="#fff"/>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recDetailListMitra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/appBarDetail"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </ScrollView>

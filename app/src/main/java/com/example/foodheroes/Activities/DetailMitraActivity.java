@@ -2,6 +2,7 @@ package com.example.foodheroes.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,16 +29,19 @@ public class DetailMitraActivity extends AppCompatActivity {
     DatabaseReference EventMitraReff;
     ArrayList<EventMitra> eventMitraList;
     DetailMitraAdapter detailMitraAdapter;
+    Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_mitra);
 
-//        Objects.requireNonNull(this).setTitle("Detail");
 
         recDetailMitra = findViewById(R.id.recDetailListMitra);
         recDetailMitra.setLayoutManager(new LinearLayoutManager(this));
+
+        mToolbar = findViewById(R.id.topToolbarDetail);
+        mToolbar.setTitle("Detail Event");
 
         eventMitraList = new ArrayList<EventMitra>();
         EventMitraReff = FirebaseDatabase.getInstance().getReference().child("EventMitra");
