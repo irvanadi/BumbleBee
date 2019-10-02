@@ -1,17 +1,23 @@
 package com.example.foodheroes.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.foodheroes.Activities.DetailMitraActivity;
+import com.example.foodheroes.Activities.FormRelawanActivity;
+import com.example.foodheroes.Activities.MapsActivity;
+import com.example.foodheroes.Activities.MapsRelawanActivity;
 import com.example.foodheroes.Models.EventMitra;
 import com.example.foodheroes.Models.Mitra;
 import com.example.foodheroes.R;
@@ -22,6 +28,8 @@ public class DetailMitraAdapter extends RecyclerView.Adapter<DetailMitraAdapter.
 
     private Context context;
     private ArrayList<EventMitra> results;
+
+    String AlamatPenerima;
 
     public DetailMitraAdapter(Context context, ArrayList<EventMitra> results) {
         this.context = context;
@@ -48,6 +56,7 @@ public class DetailMitraAdapter extends RecyclerView.Adapter<DetailMitraAdapter.
         holder.txtDescriptionChild.setText(result.getDeskripsiMitra());
         holder.txtSpecificTanggal.setText(result.getTanggal());
         holder.txtSpecificAlamat.setText(result.getAlamatPenerima());
+        AlamatPenerima = result.getAlamatPenerima();
         holder.btnRelawan.setText(result.getRelawan() + " Relawan");
         holder.txtSpecificPorsi.setText(result.getPorsi() + " Porsi");
         holder.txtSpecificKategori.setText(result.getKategori());
@@ -58,14 +67,15 @@ public class DetailMitraAdapter extends RecyclerView.Adapter<DetailMitraAdapter.
         return results.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView txtChildNamaMitra, txtAlamatMitra, txtDescriptionChild, txtSpecificTanggal, txtSpecificKategori, txtSpecificPorsi, txtSpecificAlamat;
-        private Button btnRelawan;
+        private Button btnRelawan, btnDaftarRelawan, btnMaps;
         private ImageView imgMitra;
 
         public ViewHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
 
             imgMitra = itemView.findViewById(R.id.imgChildRelawan);
             txtChildNamaMitra = itemView.findViewById(R.id.txtChildNamaMitra);
@@ -76,6 +86,39 @@ public class DetailMitraAdapter extends RecyclerView.Adapter<DetailMitraAdapter.
             txtSpecificPorsi = itemView.findViewById(R.id.txtSpecificPorsi);
             txtSpecificAlamat = itemView.findViewById(R.id.txtSpecificAlamat);
             btnRelawan = itemView.findViewById(R.id.btnRelawan);
+            btnDaftarRelawan = itemView.findViewById(R.id.btnDaftarRelawan);
+            btnDaftarRelawan.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                toFormRelawan();
+                }
+            });
+            itemView.findViewById(R.id.btnMaps).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    toMaps();
+                }
+            });
+        }
+
+        @Override
+        public void onClick(View v) {
+
+        }
+        public void toFormRelawan(){
+            DetailMitraActivity detailMitraActivity = (DetailMitraActivity) itemView.getContext();
+
+            Intent intent1 = new Intent(detailMitraActivity, FormRelawanActivity.class);
+            detailMitraActivity.startActivity(intent1);
+
+        }
+        private void toMaps(){
+            DetailMitraActivity detailMitraActivity = (DetailMitraActivity) itemView.getContext();
+
+            Intent intent1 = new Intent(detailMitraActivity, MapsActivity.class);
+            intent1.putExtra("AlamatPenerima",AlamatPenerima);
+            Toast.makeText(detailMitraActivity, AlamatPenerima, Toast.LENGTH_SHORT).show();
+            detailMitraActivity.startActivity(intent1);
         }
     }
 }

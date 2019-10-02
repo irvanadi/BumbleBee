@@ -69,14 +69,14 @@ public class AccountFragment extends Fragment {
 //        eventMitra.setKoor("1");
 //        eventMitra.setNamaPenerima("Siti Halim");
 
-        MitraReff.push().setValue(eventMitra);
+//        MitraReff.push().setValue(eventMitra);
 
         view.findViewById(R.id.btnLogout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
                 FirebaseAuth.getInstance().signOut();
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         });

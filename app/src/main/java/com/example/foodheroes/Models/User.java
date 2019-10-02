@@ -1,13 +1,14 @@
 package com.example.foodheroes.Models;
 
 public class User {
-    String Email, NumberPhone, Password;
+    String Nama, Email, NumberPhone, Password;
 
     public User(){
 
     }
 
-    public User(String email, String numberPhone, String password) {
+    public User(String nama, String email, String numberPhone, String password) {
+        Nama = nama;
         Email = email;
         NumberPhone = numberPhone;
         Password = password;
@@ -15,6 +16,14 @@ public class User {
 
     public String getEmail() {
         return Email;
+    }
+
+    public String getNama() {
+        return Nama;
+    }
+
+    public void setNama(String nama) {
+        Nama = nama;
     }
 
     public void setEmail(String email) {

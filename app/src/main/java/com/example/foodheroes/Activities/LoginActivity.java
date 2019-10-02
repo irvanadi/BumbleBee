@@ -27,6 +27,7 @@ import java.util.ArrayList;
 public class LoginActivity extends AppCompatActivity {
 
     AutoCompleteTextView txtNoTelp, txtPassword;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

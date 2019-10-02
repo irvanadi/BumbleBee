@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +18,8 @@ import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthRecentLoginRequiredException;
+import com.google.firebase.auth.FirebaseAuthSettings;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
@@ -28,6 +31,7 @@ public class VerificationLoginActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     String VerificationId, NumberPhone;
     Button btnVerifCode;
+
     private PhoneAuthProvider.ForceResendingToken mResendToken;
 
     @Override
@@ -41,6 +45,8 @@ public class VerificationLoginActivity extends AppCompatActivity {
         txtVerifCode = findViewById(R.id.txtVerifCode);
 
         //+6282232356877
+
+
 
         sendVerificationCode(NumberPhone);
         findViewById(R.id.btnVerifCode).setOnClickListener(new View.OnClickListener() {
@@ -110,14 +116,15 @@ public class VerificationLoginActivity extends AppCompatActivity {
 
         @Override
         public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
-//            String Code = phoneAuthCredential.getSmsCode();
-//
-//            if(Code != null){
-//                txtVerifCode.setText(Code);
-//                signInWithPhoneAuthCredential(phoneAuthCredential);
-//            } else {
-//                Toast.makeText(VerificationLoginActivity.this, "Code Verifikasi Salah", Toast.LENGTH_SHORT).show();
-//            }
+            String Code = phoneAuthCredential.getSmsCode();
+
+            Log.w("onVerifFailed", "onVerificationFailed");
+            if(Code != null){
+                txtVerifCode.setText(Code);
+                signInWithPhoneAuthCredential(phoneAuthCredential);
+            } else {
+                Toast.makeText(VerificationLoginActivity.this, "Code Verifikasi Salah", Toast.LENGTH_SHORT).show();
+            }
         }
 
         @Override
