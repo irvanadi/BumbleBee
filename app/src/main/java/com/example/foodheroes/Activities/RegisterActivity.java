@@ -42,6 +42,8 @@ public class RegisterActivity extends AppCompatActivity {
         user = new User();
         UserReff = FirebaseDatabase.getInstance().getReference().child("User");
 
+
+
         findViewById(R.id.btnDaftar).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

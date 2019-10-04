@@ -1,6 +1,8 @@
 package com.example.foodheroes.Fragments;
 
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,17 +16,26 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.foodheroes.Activities.LoginActivity;
+import com.example.foodheroes.Activities.VerificationLoginActivity;
 import com.example.foodheroes.Adapter.MitraAdapter;
+import com.example.foodheroes.Models.EventMitra;
 import com.example.foodheroes.Models.Mitra;
+import com.example.foodheroes.Models.User;
 import com.example.foodheroes.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import org.w3c.dom.Text;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -39,15 +50,16 @@ import devs.mulham.horizontalcalendar.utils.HorizontalCalendarListener;
 
 public class RelawanFragment extends Fragment {
 
-    ArrayList<Mitra> detailMitras;
+    ArrayList<EventMitra> detailMitras;
     MitraAdapter mitraAdapter;
     DatabaseReference MitraReff;
     RecyclerView recListMitra;
+    TextView txtDataKosong;
+    ImageView imgSeparator;
 
     public RelawanFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,12 +67,26 @@ public class RelawanFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_relawan, container, false);
 
+        final ProgressDialog dialog = new ProgressDialog(getContext());
+        dialog.setMessage("Loading ...");
+        dialog.setCancelable(false);
+        dialog.show();
+
+        imgSeparator = view.findViewById(R.id.imgSeparator);
+        txtDataKosong = view.findViewById(R.id.txtDataKosong);
+        recListMitra = view.findViewById(R.id.recDetailMitra);
+        recListMitra.setLayoutManager(new LinearLayoutManager(getContext()));
+        txtDataKosong.setVisibility(View.INVISIBLE);
+
+
         Objects.requireNonNull(getActivity()).setTitle("Relawan");
+
         MitraReff = FirebaseDatabase.getInstance().getReference().child("Mitra");
 
         BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.navRelawan);
         bottomNavigationView.setVisibility(View.VISIBLE);
 
+        Date date = new Date();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         /* starts before 1 month from now */
         Calendar startDate = Calendar.getInstance();
@@ -75,36 +101,96 @@ public class RelawanFragment extends Fragment {
                 .datesNumberOnScreen(5)
                 .build();
 
-        horizontalCalendar.setCalendarListener(new HorizontalCalendarListener() {
-            @Override
-            public void onDateSelected(Calendar date, int position){
-                Toast.makeText(getContext(), dateFormat.format(date.getTime()), Toast.LENGTH_SHORT).show();
-            }
-        });
+        detailMitras = new ArrayList<EventMitra>();
 
-        recListMitra = view.findViewById(R.id.recDetailMitra);
-        recListMitra.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
-
-        detailMitras = new ArrayList<Mitra>();
-
-
-        MitraReff.addValueEventListener(new ValueEventListener() {
+        Toast.makeText(getContext(), dateFormat.format(date.getTime()), Toast.LENGTH_SHORT).show();
+        Query query = FirebaseDatabase.getInstance().getReference().child("EventMitra").orderByChild("tanggal").equalTo(dateFormat.format(date.getTime()));
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()){
+                if (dataSnapshot.exists()){
+                    txtDataKosong.setVisibility(View.INVISIBLE);
                     for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                        Mitra mitra = snapshot.getValue(Mitra.class);
-                        detailMitras.add(mitra);
-                        Log.d("Detail", detailMitras.toString());
+                        String tanggal = snapshot.getValue(EventMitra.class).getTanggal();
+                        Log.d("Tanggal",tanggal);
+
+                        if(tanggal.equals(dateFormat.format(date.getTime()))){
+                            Intent intent = new Intent(getContext(), VerificationLoginActivity.class);
+                            Toast.makeText(getContext(), tanggal, Toast.LENGTH_SHORT).show();
+                            EventMitra eventMitra = snapshot.getValue(EventMitra.class);
+                            detailMitras.add(eventMitra);
+                            dialog.dismiss();
+//                                Toast.makeText(getContext(), "ph"+numberPhoneFB+".pass"+passwordFB, Toast.LENGTH_SHORT).show();
+//                                startActivity(intent);
+
+                        } else {
+                            dialog.dismiss();
+                            Toast.makeText(getContext(), "Maaf hari ini tidak ada Mitra yang akan ber-Donasi", Toast.LENGTH_SHORT).show();
+                        }
+
                     }
-                    mitraAdapter = new MitraAdapter(getContext(), detailMitras);
-                    recListMitra.setAdapter(mitraAdapter);
+                    recListMitra.setVisibility(View.VISIBLE);
+
+                } else {
+                    dialog.dismiss();
+                    recListMitra.setVisibility(View.INVISIBLE);
+                    txtDataKosong.setVisibility(View.VISIBLE);
+                    Toast.makeText(getContext(), "Maaf hari ini tidak ada Mitra yang akan ber-Donasi", Toast.LENGTH_SHORT).show();
                 }
+                mitraAdapter = new MitraAdapter(getContext(), detailMitras);
+                recListMitra.setAdapter(mitraAdapter);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+
+        horizontalCalendar.setCalendarListener(new HorizontalCalendarListener() {
+            @Override
+            public void onDateSelected(Calendar date, int position){
+                detailMitras.clear();
+//                Toast.makeText(getContext(), dateFormat.format(date.getTime()), Toast.LENGTH_SHORT).show();
+                Query query = FirebaseDatabase.getInstance().getReference().child("EventMitra").orderByChild("tanggal").equalTo(dateFormat.format(date.getTime()));
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.exists()){
+                            txtDataKosong.setVisibility(View.INVISIBLE);
+                            for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                                String tanggal = snapshot.getValue(EventMitra.class).getTanggal();
+                                Log.d("Tanggal123",tanggal);
+                                if(tanggal.equals(dateFormat.format(date.getTime()))){
+                                    Intent intent = new Intent(getContext(), VerificationLoginActivity.class);
+//                        Toast.makeText(getContext(), tanggal, Toast.LENGTH_SHORT).show();
+                                    EventMitra eventMitra = snapshot.getValue(EventMitra.class);
+                                    detailMitras.add(eventMitra);
+//                        dialog.dismiss();
+//                                Toast.makeText(getContext(), "ph"+numberPhoneFB+".pass"+passwordFB, Toast.LENGTH_SHORT).show();
+//                                startActivity(intent);
+
+                                } else {
+
+//                                    Toast.makeText(getContext(), "No. Telpon / Password Anda Salah", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                            recListMitra.setVisibility(View.VISIBLE);
+                        } else {
+                            recListMitra.setVisibility(View.INVISIBLE);
+                            txtDataKosong.setVisibility(View.VISIBLE);
+                            Toast.makeText(getContext(), "Maaf hari ini tidak ada Mitra yang akan ber-Donasi", Toast.LENGTH_SHORT).show();
+                        }
+
+                        mitraAdapter = new MitraAdapter(getContext(), detailMitras);
+                        recListMitra.setAdapter(mitraAdapter);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
             }
         });
         return view;

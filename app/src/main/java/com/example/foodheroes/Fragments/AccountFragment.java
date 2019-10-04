@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.foodheroes.Activities.LoginActivity;
 import com.example.foodheroes.Activities.MainActivity;
@@ -31,7 +32,7 @@ public class AccountFragment extends Fragment {
     DatabaseReference MitraReff;
     Mitra mitra;
     EventMitra eventMitra;
-
+    TextView textView;
 
     public AccountFragment() {
         // Required empty public constructor
@@ -71,13 +72,23 @@ public class AccountFragment extends Fragment {
 
 //        MitraReff.push().setValue(eventMitra);
 
-        view.findViewById(R.id.btnLogout).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.txtLogOut).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
-                FirebaseAuth.getInstance().signOut();
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
+
+            }
+        });
+        view.findViewById(R.id.txtEditAccount).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Edit Nama dll
+            }
+        });
+
+        view.findViewById(R.id.txtEditProfile).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Edit Photo Profile
             }
         });
 

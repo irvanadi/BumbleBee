@@ -3,12 +3,14 @@ package com.example.foodheroes.Activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.foodheroes.Models.User;
@@ -26,7 +28,7 @@ import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity {
 
-    AutoCompleteTextView txtNoTelp, txtPassword;
+    EditText txtNoTelp, txtPassword;
     FirebaseAuth mAuth;
 
     @Override
@@ -52,8 +54,12 @@ public class LoginActivity extends AppCompatActivity {
 
                             if(NumberPhone.equals(numberPhoneFB) && pass.equals(passwordFB)){
                                 Intent intent = new Intent(LoginActivity.this, VerificationLoginActivity.class);
+                                final ProgressDialog dialog = new ProgressDialog(LoginActivity.this);
+                                dialog.setMessage("Loading ...");
+                                dialog.setCancelable(false);
+                                dialog.show();
                                 intent.putExtra("NumberPhone", NumberPhone);
-                                Toast.makeText(LoginActivity.this, "ph"+numberPhoneFB+".pass"+passwordFB, Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(LoginActivity.this, "ph"+numberPhoneFB+".pass"+passwordFB, Toast.LENGTH_SHORT).show();
                                 startActivity(intent);
 
                             } else {

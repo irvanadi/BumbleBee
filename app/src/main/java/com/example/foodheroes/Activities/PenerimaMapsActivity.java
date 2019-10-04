@@ -7,7 +7,6 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -16,15 +15,10 @@ import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.foodheroes.R;
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApi;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
@@ -37,46 +31,38 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
+public class PenerimaMapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
     private GoogleMap mMap;
     private GoogleApiClient googleApiClient;
     private LocationRequest locationRequest;
     private Location locationLast;
     private Marker marker;
-    public static final  int PERMISSION_REQUEST = 99;
+    DatabaseReference databaseReference;
 
-    String[] mahasiswa;
-    String alamatMitra;
+
+    public static final  int PERMISSION_REQUEST = 99;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_maps);
-        final ProgressDialog dialog = new ProgressDialog(this);
-        dialog.setMessage("Loading ...");
-        dialog.setCancelable(false);
-        dialog.show();
-
+        setContentView(R.layout.activity_penerima_maps);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
             checkLocationPermission();
         }
-        Intent intent = getIntent();
-        alamatMitra = intent.getStringExtra("AlamatPenerima");
 
-//        button2 = findViewById(R.id.B_search);
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        dialog.dismiss();
 
 
 //        button2.setOnClickListener(new View.OnClickListener() {
@@ -96,38 +82,40 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public void loaddata(){
 
+//        Log.d("asd","acc");
+//
+//        databaseReference = FirebaseDatabase.ge
+//        List<Address> addressList = null;
+//
+//        MarkerOptions markerOptions = new MarkerOptions();
+//
+//
+//        if (true){
+//            Geocoder geocoder = new Geocoder(MapsActivity.this);
+//
+//            try {
+//
+//
+//                addressList = geocoder.getFromLocationName(alamatMitra,1);
+//                Log.d("ASD", alamatMitra);
+//
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//
+//            for (int j = 0; j < addressList.size();j++){
+//                Address address = addressList.get(j);
+//                LatLng latLng = new LatLng(address.getLatitude(),address.getLongitude());
+//                markerOptions.position(latLng);
+//                markerOptions.title(alamatMitra);
+//                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
+//                mMap.addMarker(markerOptions);
+//                mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+//            }
+//
+//        }
 
-                    Log.d("asd","acc");
-
-                        List<Address> addressList = null;
-
-                        MarkerOptions markerOptions = new MarkerOptions();
-
-
-                        if (true){
-                            Geocoder geocoder = new Geocoder(MapsActivity.this);
-
-                            try {
-                                addressList = geocoder.getFromLocationName(alamatMitra,1);
-                                Log.d("ASD", alamatMitra);
-
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-
-                            for (int j = 0; j < addressList.size();j++){
-                                Address address = addressList.get(j);
-                                LatLng latLng = new LatLng(address.getLatitude(),address.getLongitude());
-                                markerOptions.position(latLng);
-                                markerOptions.title(alamatMitra);
-                                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
-                                mMap.addMarker(markerOptions);
-                                mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-                            }
-
-                        }
-
-                    }
+    }
 
 
     @Override
@@ -144,7 +132,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         mMap.setMyLocationEnabled(true);
                     }
                 } else {
-                    Toast.makeText(MapsActivity.this,"Permission Denied",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PenerimaMapsActivity.this,"Permission Denied",Toast.LENGTH_SHORT).show();
                 }
                 return;
         }
@@ -180,6 +168,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API)
                 .build();
+
         googleApiClient.connect();
     }
 

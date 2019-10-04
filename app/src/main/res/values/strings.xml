@@ -6,6 +6,7 @@
     <string name="google_Maps_API_key">AIzaSyD9J3cd-G15FrVs58lezdRV7gDFUaNc8Q4</string>
 
     <string name="title_activity_maps">Map</string>
+    <string name="title_activity_penerima_maps">Map</string>
     <string-array name="KategoriRelawan">
         <item>Koordinator</item>
         <item>Relawan</item>

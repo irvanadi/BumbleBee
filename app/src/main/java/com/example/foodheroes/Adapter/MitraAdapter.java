@@ -13,7 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.foodheroes.Activities.DetailMitraActivity;
+import com.example.foodheroes.Activities.FormRelawanActivity;
 import com.example.foodheroes.Activities.MainActivity;
+import com.example.foodheroes.Models.EventMitra;
 import com.example.foodheroes.Models.Mitra;
 import com.example.foodheroes.R;
 
@@ -22,9 +24,9 @@ import java.util.ArrayList;
 public class MitraAdapter extends RecyclerView.Adapter<MitraAdapter.ViewHolder> {
 
     private Context context;
-    private ArrayList<Mitra> results;
+    private ArrayList<EventMitra> results;
 
-    public MitraAdapter(Context context, ArrayList<Mitra> results) {
+    public MitraAdapter(Context context, ArrayList<EventMitra> results) {
         this.context = context;
         this.results = results;
     }
@@ -38,8 +40,10 @@ public class MitraAdapter extends RecyclerView.Adapter<MitraAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.txtnamaMitra.setText("Holland Bakery");
-        holder.txtTanggal.setText("19 Jan 2019");
+        EventMitra result = results.get(position);
+
+        holder.txtnamaMitra.setText(result.getNamaMitra());
+        holder.txtTanggal.setText(result.getTanggal());
         Glide.with(context)
                 .asBitmap()
                 .load(R.drawable.food)
@@ -74,6 +78,13 @@ public class MitraAdapter extends RecyclerView.Adapter<MitraAdapter.ViewHolder> 
                 }
             });
 
+            txtDaftar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    toDaftar();
+                }
+            });
+
         }
 
         private void toDetails(){
@@ -93,6 +104,13 @@ public class MitraAdapter extends RecyclerView.Adapter<MitraAdapter.ViewHolder> 
 
         @Override
         public void onClick(View v) {
+
+        }
+        private void toDaftar(){
+            MainActivity mainActivity = (MainActivity) itemView.getContext();
+
+            Intent intent = new Intent(mainActivity, FormRelawanActivity.class);
+            mainActivity.startActivity(intent);
 
         }
     }

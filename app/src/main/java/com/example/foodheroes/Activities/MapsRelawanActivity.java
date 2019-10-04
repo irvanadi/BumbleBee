@@ -1,6 +1,7 @@
 package com.example.foodheroes.Activities;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -26,6 +27,8 @@ import com.google.android.gms.common.ErrorDialogFragment;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -43,7 +46,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.io.IOException;
 import java.util.List;
 
-public class MapsRelawanActivity extends AppCompatActivity implements OnMapReadyCallback{
+public class MapsRelawanActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
     public static final  int PERMISSION_REQUEST = 99;
     private boolean LocationPermissionGranted = false;
@@ -51,12 +54,10 @@ public class MapsRelawanActivity extends AppCompatActivity implements OnMapReady
     private static final float DEFAULT_ZOOM = 15f;
     private GoogleMap gMap;
     DatabaseReference MitraReff;
-
-    private  GoogleApiClient googleApiClient;
     private Location locationLast;
     private Marker marker;
-
-
+    private GoogleApiClient googleApiClient;
+    private LocationRequest locationRequest;
 
     String alamatPenerima;
 
@@ -78,7 +79,6 @@ public class MapsRelawanActivity extends AppCompatActivity implements OnMapReady
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        getLocation();
     }
 
     public boolean isServiceOK(){
@@ -102,10 +102,22 @@ public class MapsRelawanActivity extends AppCompatActivity implements OnMapReady
 
         if(LocationPermissionGranted){
             getDeviceLocated();
-
+            buildGoolgeApiClient();
             gMap.setMyLocationEnabled(true);
             gMap.getUiSettings().setMyLocationButtonEnabled(false);
         }
+        getLocation();
+    }
+
+    protected synchronized void buildGoolgeApiClient(){
+
+        googleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API)
+                .build();
+
+        googleApiClient.connect();
     }
 
     private void getLocationPermission(){
@@ -192,7 +204,7 @@ public class MapsRelawanActivity extends AppCompatActivity implements OnMapReady
         markerOptions.title(alamatPenerima);
         markerOptions.icon(BitmapDescriptorFactory.defaultMarker());
         gMap.addMarker(markerOptions);
-        gMap.animateCamera(CameraUpdateFactory.newLatLng(MitralatLng));
+        gMap.moveCamera(CameraUpdateFactory.newLatLng(MitralatLng));
 
 //        for(int i = 0; i < results.size(); i++){
 //
@@ -228,4 +240,60 @@ public class MapsRelawanActivity extends AppCompatActivity implements OnMapReady
 
     }
 
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+
+        locationRequest = new LocationRequest();
+
+        locationRequest.setInterval(1000);
+        locationRequest.setFastestInterval(1000);
+        locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+
+        if (ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+            LocationServices.FusedLocationApi.requestLocationUpdates(googleApiClient, locationRequest, this);
+        }
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        locationLast = location;
+
+        if (marker!=null){
+            marker.remove();
+        }
+
+//        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+        // LatLng latLng = new LatLng(-34, 151);
+
+//        MarkerOptions markerOptions = new MarkerOptions();
+//        markerOptions.position(latLng);
+//        markerOptions.title("Choose Location");
+//        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+//        // markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.logo));
+//
+//        marker = gMap.addMarker(markerOptions);
+//
+//        gMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+//        gMap.animateCamera(CameraUpdateFactory.zoomBy(10));
+
+        if (googleApiClient!=null){
+            LocationServices.FusedLocationApi.removeLocationUpdates(googleApiClient, this);
+        }
+
+    }
 }
