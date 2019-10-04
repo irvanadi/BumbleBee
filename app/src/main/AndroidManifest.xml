@@ -44,6 +44,10 @@
         <activity
             android:name=".Activities.LoginActivity"
             android:screenOrientation="portrait">
+
+        </activity>
+        <activity android:name=".Activities.SliderActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
