@@ -117,7 +117,7 @@ public class DetailMitraAdapter extends RecyclerView.Adapter<DetailMitraAdapter.
 
             Intent intent1 = new Intent(detailMitraActivity, MapsActivity.class);
             intent1.putExtra("AlamatPenerima",AlamatPenerima);
-            Toast.makeText(detailMitraActivity, AlamatPenerima, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(detailMitraActivity, AlamatPenerima, Toast.LENGTH_SHORT).show();
             detailMitraActivity.startActivity(intent1);
         }
     }

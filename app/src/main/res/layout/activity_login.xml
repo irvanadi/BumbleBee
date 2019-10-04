@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
     tools:context=".Activities.LoginActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
 
     <ImageView
         android:id="@+id/imgLogoFHLogin"
@@ -24,46 +29,48 @@
         android:text="Login Sebagai Relawan"
         android:textColor="#000"
         android:textSize="18sp"
+        android:textStyle="bold"
         android:layout_marginTop="100dp"
         app:layout_constraintTop_toBottomOf="@id/imgLogoFHLogin"
         app:layout_constraintStart_toStartOf="parent"/>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/InputNumberPhone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/txtLogin"
-        android:layout_marginTop="36dp">
-
-        <AutoCompleteTextView
+        <EditText
             android:id="@+id/txtNumberPhone"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="36dp"
+            android:drawableStart="@drawable/ic_phone_black_24dp"
+            android:drawablePadding="12dp"
+            android:paddingStart="12dp"
+            android:drawableTint="#aeaeb2"
             android:hint="No. Telepon"
+            android:paddingEnd="12dp"
+            android:background="#F3F3F3"
+            android:singleLine="true"
             android:inputType="phone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
-    </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintTop_toBottomOf="@id/txtLogin"/>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/InputPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/InputNumberPhone"
-        android:layout_marginTop="8dp">
-
-        <AutoCompleteTextView
+        <EditText
             android:id="@+id/txtPassword"
-            android:hint="Password"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp"
+            android:drawableStart="@drawable/ic_vpn_key_black_24dp"
+            android:drawableTint="#aeaeb2"
+            android:drawablePadding="12dp"
+            android:paddingStart="12dp"
+            android:hint="Password"
+            android:paddingEnd="12dp"
+            android:background="#F3F3F3"
+            android:singleLine="true"
+            android:inputType="textPassword"
+            app:layout_constraintTop_toBottomOf="@id/txtNumberPhone"/>
 
     <CheckBox
         android:id="@+id/cbIngatSaya"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/InputPassword"
+        app:layout_constraintTop_toBottomOf="@id/txtPassword"
         app:layout_constraintStart_toStartOf="parent"
         android:text="Ingat Saya"/>
 
@@ -76,7 +83,7 @@
         android:fontFamily=""
         android:textColor="#EEAA54"
         android:layout_marginTop="4dp"
-        app:layout_constraintTop_toBottomOf="@id/InputPassword"
+        app:layout_constraintTop_toBottomOf="@id/txtPassword"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <Button
@@ -95,29 +102,34 @@
 
     <TextView
         android:id="@+id/txtToRegist1"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textColor="#000"
         android:text="Belum memiliki akun ?"
         android:layout_marginTop="16dp"
-        android:layout_marginStart="62dp"
         app:layout_constraintTop_toBottomOf="@id/btnLogin"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/txtToRegist2"
+        app:layout_constraintHorizontal_weight="1"
+        android:textAlignment="viewEnd"
         />
 
     <TextView
         android:id="@+id/txtToRegist2"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textColor="#EEAA54"
         android:text="Daftar Sekarang"
         android:layout_marginTop="16dp"
         android:layout_marginStart="8dp"
         app:layout_constraintTop_toBottomOf="@id/btnLogin"
-        app:layout_constraintStart_toEndOf="@id/txtToRegist1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1"
         android:clickable="true"
         android:focusable="true"
+        app:layout_constraintStart_toEndOf="@id/txtToRegist1"
+        android:textAlignment="viewStart"
         />
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

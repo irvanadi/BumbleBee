@@ -3,6 +3,7 @@ package com.example.foodheroes.Activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,6 +35,7 @@ public class VerificationLoginActivity extends AppCompatActivity {
 
     private PhoneAuthProvider.ForceResendingToken mResendToken;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,11 +46,12 @@ public class VerificationLoginActivity extends AppCompatActivity {
         NumberPhone = intent.getStringExtra("NumberPhone");
         txtVerifCode = findViewById(R.id.txtVerifCode);
 
+
         //+6282232356877
 
-
-
+        final ProgressDialog dialog = new ProgressDialog(VerificationLoginActivity.this);
         sendVerificationCode(NumberPhone);
+        dialog.dismiss();
         findViewById(R.id.btnVerifCode).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,8 +78,7 @@ public class VerificationLoginActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     //here you can open new activity
-                    Toast.makeText(getApplicationContext(),
-                            "Login Successfull", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"Login Successfull", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(VerificationLoginActivity.this, MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
@@ -123,7 +125,7 @@ public class VerificationLoginActivity extends AppCompatActivity {
                 txtVerifCode.setText(Code);
                 signInWithPhoneAuthCredential(phoneAuthCredential);
             } else {
-                Toast.makeText(VerificationLoginActivity.this, "Code Verifikasi Salah", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(VerificationLoginActivity.this, "Code Verifikasi Salah", Toast.LENGTH_SHORT).show();
             }
         }
 
