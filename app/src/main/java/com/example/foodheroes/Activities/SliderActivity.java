@@ -60,7 +60,7 @@ public class SliderActivity extends AppCompatActivity {
         setContentView(R.layout.onboarding_layout);
 
         // hide the action bar
-        getSupportActionBar().hide();
+//        getSupportActionBar().hide();
 
         // ini views
         btnNext = findViewById(R.id.btn_next);
@@ -153,7 +153,7 @@ public class SliderActivity extends AppCompatActivity {
 
                 //open main activity
 
-                Intent mainActivity = new Intent(getApplicationContext(),MainActivity.class);
+                Intent mainActivity = new Intent(SliderActivity.this,LoginActivity.class);
                 startActivity(mainActivity);
                 // also we need to save a boolean value to storage so next time when the user run the app
                 // we could know that he is already checked the intro screen activity
