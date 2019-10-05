@@ -7,6 +7,9 @@
     <color name="gradient_start_color">#EC9F05</color>
     <color name="gradient_end_color">#FF4E00</color>
 
+    <color name="bg_splash_start">#FFEFBA</color>
+    <color name="bg_splash_end">#FFFFFF</color>
+
 
     <!-- colors for tab and screent text -->
 
