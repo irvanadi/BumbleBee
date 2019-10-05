@@ -5,11 +5,12 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/shadow_bg"
-    android:layout_marginEnd="36dp">
+    android:layout_marginEnd="18dp"
+    android:layout_marginStart="18dp">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="320dp"
-        android:layout_height="158dp"
+        android:layout_width="300dp"
+        android:layout_height="164dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:cardCornerRadius="5dp"
@@ -46,12 +47,24 @@
                 app:layout_constraintStart_toStartOf="parent"
                 />
 
+            <TextView
+                android:id="@+id/txtJam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="15:00"
+                android:textColor="#000"
+                android:paddingStart="16dp"
+                android:textSize="14sp"
+                app:layout_constraintTop_toBottomOf="@id/txtTanggal"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
             <Button
                 android:id="@+id/btnRelawan"
                 android:layout_width="110dp"
                 android:layout_height="29dp"
                 android:background="@drawable/img_solid_blue"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="24dp"
                 android:text=" 4 Relawan"
                 android:textColor="#fff"
                 android:layout_marginStart="18dp"
@@ -60,45 +73,65 @@
                 android:drawableStart="@drawable/ic_group"
                 android:textAllCaps="false"
                 app:layout_constraintTop_toBottomOf="@id/txtTanggal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="@id/txtTanggal"/>
+                app:layout_constraintStart_toEndOf="@id/btnKoor"/>
+
+            <Button
+                android:id="@+id/btnKoor"
+                android:layout_width="130dp"
+                android:layout_height="29dp"
+                android:background="@drawable/img_solid_orange"
+                android:layout_marginTop="24dp"
+                android:text=" 0 Koordinator"
+                android:textColor="#fff"
+                android:layout_marginStart="18dp"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:drawableStart="@drawable/ic_group"
+                android:textAllCaps="false"
+                app:layout_constraintTop_toBottomOf="@id/txtTanggal"
+                app:layout_constraintStart_toStartOf="parent"/>
 
             <TextView
                 android:id="@+id/txtDetail"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="DETAIL"
                 android:textColor="#4d8af0"
                 android:paddingStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="12dp"
                 android:clickable="true"
                 android:focusable="true"
+                android:textStyle="bold"
+                android:textAlignment="viewEnd"
                 app:layout_constraintTop_toBottomOf="@id/btnRelawan"
-                app:layout_constraintStart_toStartOf="parent"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/txtDaftar"/>
 
             <TextView
                 android:id="@+id/txtDaftar"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="DAFTAR"
                 android:textColor="#4d8af0"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="12dp"
                 android:clickable="true"
+                android:textStyle="bold"
                 android:focusable="true"
                 android:layout_marginStart="48dp"
                 app:layout_constraintTop_toBottomOf="@id/btnRelawan"
-                app:layout_constraintStart_toEndOf="@id/txtDetail"/>
+                app:layout_constraintStart_toEndOf="@id/txtDetail"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
             <ImageView
                 android:contentDescription="Gambar"
                 android:id="@+id/imgMitra"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:src="@drawable/food"
                 android:layout_marginTop="16dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/txtDaftar"/>
+                app:layout_constraintStart_toStartOf="@id/txtDaftar"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

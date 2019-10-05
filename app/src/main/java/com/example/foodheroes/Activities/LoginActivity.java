@@ -23,13 +23,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.hbb20.CountryCodePicker;
 
 import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity {
 
     EditText txtNoTelp, txtPassword;
-    FirebaseAuth mAuth;
+    CountryCodePicker ccp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,14 +38,19 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         txtNoTelp = findViewById(R.id.txtNumberPhone);
         txtPassword = findViewById(R.id.txtPassword);
+        ccp = findViewById(R.id.ccp);
+        ccp.registerCarrierNumberEditText(txtNoTelp);
 
         findViewById(R.id.btnLogin).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String NumberPhone = txtNoTelp.getText().toString();
-                String pass = txtPassword.getText().toString();
 
-                Query query = FirebaseDatabase.getInstance().getReference().child("User").orderByChild("numberPhone").equalTo(txtNoTelp.getText().toString());
+
+                ccp.isValidFullNumber();
+                String pass = txtPassword.getText().toString();
+                String NumberPhone = ccp.getFullNumberWithPlus();
+                Log.d("numPhone",NumberPhone);
+                Query query = FirebaseDatabase.getInstance().getReference().child("User").orderByChild("numberPhone").equalTo(NumberPhone);
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -54,10 +60,6 @@ public class LoginActivity extends AppCompatActivity {
 
                             if(NumberPhone.equals(numberPhoneFB) && pass.equals(passwordFB)){
                                 Intent intent = new Intent(LoginActivity.this, VerificationLoginActivity.class);
-                                final ProgressDialog dialog = new ProgressDialog(LoginActivity.this);
-                                dialog.setMessage("Loading ...");
-                                dialog.setCancelable(false);
-                                dialog.show();
                                 intent.putExtra("NumberPhone", NumberPhone);
 //                                Toast.makeText(LoginActivity.this, "ph"+numberPhoneFB+".pass"+passwordFB, Toast.LENGTH_SHORT).show();
                                 startActivity(intent);

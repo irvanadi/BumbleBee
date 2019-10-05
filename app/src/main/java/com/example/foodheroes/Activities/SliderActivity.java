@@ -15,13 +15,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.foodheroes.Adapter.OnboardingAdapter;
-import com.example.foodheroes.Adapter.ScreenItem;
+import com.example.foodheroes.Models.ScreenItem;
 import com.example.foodheroes.R;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class SliderActivity extends AppCompatActivity {
 
@@ -50,7 +49,7 @@ public class SliderActivity extends AppCompatActivity {
 
         if (restorePrefData()) {
 
-            Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class );
+            Intent mainActivity = new Intent(getApplicationContext(), LoginActivity.class );
             startActivity(mainActivity);
             finish();
 
@@ -196,7 +195,6 @@ public class SliderActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = pref.edit();
         editor.putBoolean("isIntroOpnend",true);
         editor.commit();
-
 
     }
 

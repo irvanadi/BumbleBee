@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -30,6 +31,7 @@ public class DetailMitraActivity extends AppCompatActivity {
     ArrayList<EventMitra> eventMitraList;
     DetailMitraAdapter detailMitraAdapter;
     Toolbar mToolbar;
+    String idKey, NumberPhone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,10 @@ public class DetailMitraActivity extends AppCompatActivity {
         mToolbar = findViewById(R.id.topToolbarDetail);
         mToolbar.setTitle("Detail Event");
 
+        Intent intent = getIntent();
+        NumberPhone = intent.getStringExtra("NumberPhone");
+//        Log.d("Detail",NumberPhone);
+
         eventMitraList = new ArrayList<EventMitra>();
         EventMitraReff = FirebaseDatabase.getInstance().getReference().child("EventMitra");
 
@@ -52,10 +58,11 @@ public class DetailMitraActivity extends AppCompatActivity {
                 if(dataSnapshot.exists()){
                     for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                         EventMitra eventMitra = snapshot.getValue(EventMitra.class);
+                        idKey = EventMitraReff.push().getKey();
                         eventMitraList.add(eventMitra);
-                        Log.d("Detail1", eventMitra.toString());
+                        Log.d("Detail1", idKey);
                     }
-                    detailMitraAdapter = new DetailMitraAdapter(DetailMitraActivity.this, eventMitraList);
+                    detailMitraAdapter = new DetailMitraAdapter(DetailMitraActivity.this, eventMitraList, idKey);
                     recDetailMitra.setAdapter(detailMitraAdapter);
                 }
             }

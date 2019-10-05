@@ -88,6 +88,7 @@ public class RelawanFragment extends Fragment {
 
         Date date = new Date();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat dateFormat1 = new SimpleDateFormat("hh:mm");
         /* starts before 1 month from now */
         Calendar startDate = Calendar.getInstance();
         startDate.add(Calendar.WEEK_OF_MONTH, -1);
@@ -103,7 +104,6 @@ public class RelawanFragment extends Fragment {
 
         detailMitras = new ArrayList<EventMitra>();
 
-        Toast.makeText(getContext(), dateFormat.format(date.getTime()), Toast.LENGTH_SHORT).show();
         Query query = FirebaseDatabase.getInstance().getReference().child("EventMitra").orderByChild("tanggal").equalTo(dateFormat.format(date.getTime()));
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -116,7 +116,7 @@ public class RelawanFragment extends Fragment {
 
                         if(tanggal.equals(dateFormat.format(date.getTime()))){
                             Intent intent = new Intent(getContext(), VerificationLoginActivity.class);
-                            Toast.makeText(getContext(), tanggal, Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(getContext(), tanggal, Toast.LENGTH_SHORT).show();
                             EventMitra eventMitra = snapshot.getValue(EventMitra.class);
                             detailMitras.add(eventMitra);
                             dialog.dismiss();
@@ -162,7 +162,7 @@ public class RelawanFragment extends Fragment {
                                 String tanggal = snapshot.getValue(EventMitra.class).getTanggal();
                                 Log.d("Tanggal123",tanggal);
                                 if(tanggal.equals(dateFormat.format(date.getTime()))){
-                                    Intent intent = new Intent(getContext(), VerificationLoginActivity.class);
+//                                    Intent intent = new Intent(getContext(), VerificationLoginActivity.class);
 //                        Toast.makeText(getContext(), tanggal, Toast.LENGTH_SHORT).show();
                                     EventMitra eventMitra = snapshot.getValue(EventMitra.class);
                                     detailMitras.add(eventMitra);
@@ -175,6 +175,7 @@ public class RelawanFragment extends Fragment {
 //                                    Toast.makeText(getContext(), "No. Telpon / Password Anda Salah", Toast.LENGTH_SHORT).show();
                                 }
                             }
+
                             recListMitra.setVisibility(View.VISIBLE);
                         } else {
                             recListMitra.setVisibility(View.INVISIBLE);

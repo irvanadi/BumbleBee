@@ -2,6 +2,7 @@ package com.example.foodheroes.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,12 +29,12 @@ public class DetailMitraAdapter extends RecyclerView.Adapter<DetailMitraAdapter.
 
     private Context context;
     private ArrayList<EventMitra> results;
+    String NamaMitra, AlamatPenerima, AlamatMitra, jam, tanggal, idKey, NumberPhone;
 
-    String AlamatPenerima;
-
-    public DetailMitraAdapter(Context context, ArrayList<EventMitra> results) {
+    public DetailMitraAdapter(Context context, ArrayList<EventMitra> results, String idKey) {
         this.context = context;
         this.results = results;
+        this.idKey = idKey;
     }
 
     @Override
@@ -57,9 +58,14 @@ public class DetailMitraAdapter extends RecyclerView.Adapter<DetailMitraAdapter.
         holder.txtSpecificTanggal.setText(result.getTanggal());
         holder.txtSpecificAlamat.setText(result.getAlamatPenerima());
         AlamatPenerima = result.getAlamatPenerima();
-        holder.btnRelawan.setText(result.getRelawan() + " Relawan");
+        holder.btnRelawan.setText(" 3 Relawan");
         holder.txtSpecificPorsi.setText(result.getPorsi() + " Porsi");
         holder.txtSpecificKategori.setText(result.getKategori());
+        NamaMitra = result.getNamaMitra();
+        AlamatMitra = result.getAlamatMitra();
+        AlamatPenerima = result.getAlamatPenerima();
+        tanggal = result.getTanggal();
+        jam = result.getJam();
     }
 
     @Override
@@ -108,7 +114,15 @@ public class DetailMitraAdapter extends RecyclerView.Adapter<DetailMitraAdapter.
         public void toFormRelawan(){
             DetailMitraActivity detailMitraActivity = (DetailMitraActivity) itemView.getContext();
 
+            Log.d("NumPhone", "Main"+NumberPhone);
+
             Intent intent1 = new Intent(detailMitraActivity, FormRelawanActivity.class);
+            intent1.putExtra("NamaMitra",NamaMitra);
+            intent1.putExtra("AlamatPenerima",AlamatPenerima);
+            intent1.putExtra("jam",jam);
+            intent1.putExtra("tanggal",tanggal);
+            intent1.putExtra("idKey",idKey);
+            intent1.putExtra("DetailMtraAdapter",NumberPhone);
             detailMitraActivity.startActivity(intent1);
 
         }
@@ -117,6 +131,7 @@ public class DetailMitraAdapter extends RecyclerView.Adapter<DetailMitraAdapter.
 
             Intent intent1 = new Intent(detailMitraActivity, MapsActivity.class);
             intent1.putExtra("AlamatPenerima",AlamatPenerima);
+            intent1.putExtra("DetailMtraAdapter",NumberPhone);
 //            Toast.makeText(detailMitraActivity, AlamatPenerima, Toast.LENGTH_SHORT).show();
             detailMitraActivity.startActivity(intent1);
         }

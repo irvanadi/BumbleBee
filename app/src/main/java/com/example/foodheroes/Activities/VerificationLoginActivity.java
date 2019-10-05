@@ -16,11 +16,14 @@ import com.example.foodheroes.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthRecentLoginRequiredException;
 import com.google.firebase.auth.FirebaseAuthSettings;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
@@ -49,9 +52,7 @@ public class VerificationLoginActivity extends AppCompatActivity {
 
         //+6282232356877
 
-        final ProgressDialog dialog = new ProgressDialog(VerificationLoginActivity.this);
         sendVerificationCode(NumberPhone);
-        dialog.dismiss();
         findViewById(R.id.btnVerifCode).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,10 +70,10 @@ public class VerificationLoginActivity extends AppCompatActivity {
 
     private void verifySignInCode(String verifCode){
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(VerificationId, verifCode);
-        signInWithPhoneAuthCredential(credential);
+        signInWithPhoneAuthCredential(credential, NumberPhone);
     }
 
-    private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
+    private void signInWithPhoneAuthCredential(PhoneAuthCredential credential, String NumberPhone) {
         mAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -80,7 +81,8 @@ public class VerificationLoginActivity extends AppCompatActivity {
                     //here you can open new activity
                     Toast.makeText(getApplicationContext(),"Login Successfull", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(VerificationLoginActivity.this, MainActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.putExtra("NumberPhone",NumberPhone);
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 } else {
                     if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
@@ -119,14 +121,17 @@ public class VerificationLoginActivity extends AppCompatActivity {
         @Override
         public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
             String Code = phoneAuthCredential.getSmsCode();
+            //Log.d("CodeCredential",String       );
+            Log.d("SEMBARAMG", "onVerificationCompleted:" + phoneAuthCredential);
 
+            signInWithPhoneAuthCredential(phoneAuthCredential, NumberPhone);
             Log.w("onVerifFailed", "onVerificationFailed");
-            if(Code != null){
-                txtVerifCode.setText(Code);
-                signInWithPhoneAuthCredential(phoneAuthCredential);
-            } else {
+//            if(Code != null){
+//                txtVerifCode.setText(Code);
+//                signInWithPhoneAuthCredential(phoneAuthCredential);
+//            } else {
 //                Toast.makeText(VerificationLoginActivity.this, "Code Verifikasi Salah", Toast.LENGTH_SHORT).show();
-            }
+//            }
         }
 
         @Override
@@ -136,7 +141,7 @@ public class VerificationLoginActivity extends AppCompatActivity {
 
         @Override
         public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-            super.onCodeSent(s, forceResendingToken);
+            //super.onCodeSent(s, forceResendingToken);
             VerificationId = s;
             mResendToken = forceResendingToken;
         }
