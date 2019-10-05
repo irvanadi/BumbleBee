@@ -37,6 +37,7 @@ public class DetailRelawanFragment extends Fragment {
     ArrayList<EventMitra> eventMitraList;
     RecyclerView recDetailMitra;
     DetailMitraAdapter detailMitraAdapter;
+    String asd;
 
     public DetailRelawanFragment() {
         // Required empty public constructor
@@ -69,7 +70,7 @@ public class DetailRelawanFragment extends Fragment {
                         eventMitraList.add(eventMitra);
                         Log.d("Detail1", eventMitra.toString());
                     }
-                    detailMitraAdapter = new DetailMitraAdapter(getContext(), eventMitraList);
+                    detailMitraAdapter = new DetailMitraAdapter(getContext(), eventMitraList, asd);
                     recDetailMitra.setAdapter(detailMitraAdapter);
                 }
             }

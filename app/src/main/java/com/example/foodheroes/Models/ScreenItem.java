@@ -1,4 +1,4 @@
-package com.example.foodheroes.Adapter;
+package com.example.foodheroes.Models;
 
 public class ScreenItem {
 

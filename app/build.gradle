@@ -45,13 +45,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-//    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
-//    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.android.support:design:28.0.0'
     implementation 'com.android.support:support-v4:28.0.0'
-//    implementation 'com.jakewharton:butterknife:10.2.0'
-//    implementation 'com.google.android.gms:play-services-maps:16.0.0'
-//    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
 
     //Chart
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0-alpha'
@@ -66,5 +61,8 @@ dependencies {
     implementation "com.google.android.gms:play-services-location:17.0.0"
 
     //Circle Image
-    implementation 'de.hdodenhof:circleimageview:2.1.0'
+    implementation 'de.hdodenhof:circleimageview:3.0.1'
+
+    //Code Picker
+    implementation 'com.hbb20:ccp:2.3.2'
 }

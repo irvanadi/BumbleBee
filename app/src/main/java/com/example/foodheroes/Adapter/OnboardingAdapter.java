@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
+import com.example.foodheroes.Models.ScreenItem;
 import com.example.foodheroes.R;
 
 import java.util.List;

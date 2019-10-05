@@ -2,9 +2,11 @@ package com.example.foodheroes.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,6 +27,7 @@ public class MitraAdapter extends RecyclerView.Adapter<MitraAdapter.ViewHolder> 
 
     private Context context;
     private ArrayList<EventMitra> results;
+    String NumberPhone;
 
     public MitraAdapter(Context context, ArrayList<EventMitra> results) {
         this.context = context;
@@ -44,6 +47,7 @@ public class MitraAdapter extends RecyclerView.Adapter<MitraAdapter.ViewHolder> 
 
         holder.txtnamaMitra.setText(result.getNamaMitra());
         holder.txtTanggal.setText(result.getTanggal());
+
         Glide.with(context)
                 .asBitmap()
                 .load(R.drawable.food)
@@ -57,7 +61,8 @@ public class MitraAdapter extends RecyclerView.Adapter<MitraAdapter.ViewHolder> 
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private TextView txtnamaMitra, txtTanggal, txtDetail, btnRelawan, txtDaftar;
+        private TextView txtnamaMitra, txtTanggal, txtDetail, txtDaftar;
+        Button btnKoor, btnRelawan;
         private ImageView imgMitra;
 
         public ViewHolder(View itemView) {
@@ -68,6 +73,7 @@ public class MitraAdapter extends RecyclerView.Adapter<MitraAdapter.ViewHolder> 
             txtTanggal = itemView.findViewById(R.id.txtTanggal);
             txtDetail = itemView.findViewById(R.id.txtDetail);
             btnRelawan = itemView.findViewById(R.id.btnRelawan);
+            btnKoor = itemView.findViewById(R.id.btnKoor);
             txtDaftar = itemView.findViewById(R.id.txtDaftar);
             imgMitra = itemView.findViewById(R.id.imgMitra);
 
@@ -91,6 +97,8 @@ public class MitraAdapter extends RecyclerView.Adapter<MitraAdapter.ViewHolder> 
             MainActivity mainActivity = (MainActivity) itemView.getContext();
 
             Intent intent = new Intent(mainActivity, DetailMitraActivity.class);
+            intent.putExtra("NumberPhone",NumberPhone);
+            Log.d("NumPhone", "MitraAdapter"+NumberPhone);
             mainActivity.startActivity(intent);
 
 //            DetailRelawanFragment nextFrag = new DetailRelawanFragment();
@@ -110,6 +118,8 @@ public class MitraAdapter extends RecyclerView.Adapter<MitraAdapter.ViewHolder> 
             MainActivity mainActivity = (MainActivity) itemView.getContext();
 
             Intent intent = new Intent(mainActivity, FormRelawanActivity.class);
+            intent.putExtra("NumberPhone",NumberPhone);
+            Log.d("NumPhone", "MitraAdapter"+NumberPhone);
             mainActivity.startActivity(intent);
 
         }

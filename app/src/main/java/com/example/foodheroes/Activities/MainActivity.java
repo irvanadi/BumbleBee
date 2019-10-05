@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -21,11 +22,15 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
     Toolbar mToolbar;
+    String NumberPhone;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mToolbar = findViewById(R.id.topToolbar);
+        Intent intent = getIntent();
+        NumberPhone = intent.getStringExtra("NumberPhone");
+//        Log.d("NumPhone", NumberPhone);
         setSupportActionBar(mToolbar);
         BottomNavigationView navigationView = findViewById(R.id.navRelawan);
         navigationView.setOnNavigationItemSelectedListener(this);

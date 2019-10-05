@@ -24,22 +24,58 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtSpecificAlamat" />
 
+<!--        <Button-->
+<!--            android:id="@+id/btnRelawan"-->
+<!--            android:layout_width="110dp"-->
+<!--            android:layout_height="29dp"-->
+<!--            android:layout_marginStart="18dp"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:background="@drawable/img_solid_blue"-->
+<!--            android:drawableStart="@drawable/ic_group"-->
+<!--            android:paddingStart="5dp"-->
+<!--            android:paddingEnd="5dp"-->
+<!--            android:text=" 4 Relawan"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:textColor="#fff"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/txtPendaftar" />-->
+
         <Button
-            android:id="@+id/btnRelawan"
-            android:layout_width="110dp"
+            android:id="@+id/btnKoor"
+            android:layout_width="0dp"
             android:layout_height="29dp"
-            android:layout_marginStart="18dp"
+            android:background="@drawable/img_solid_orange"
             android:layout_marginTop="8dp"
-            android:background="@drawable/img_solid_blue"
-            android:drawableStart="@drawable/ic_group"
+            android:text=" 0 Koordinator"
+            android:textColor="#fff"
+            android:layout_marginStart="16dp"
+            app:layout_constraintHorizontal_weight="1"
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
-            android:text=" 4 Relawan"
+            android:drawableStart="@drawable/ic_group"
             android:textAllCaps="false"
-            android:textColor="#fff"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtPendaftar"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txtPendaftar" />
+            app:layout_constraintEnd_toStartOf="@id/btnRelawan"/>
+
+        <Button
+            android:id="@+id/btnRelawan"
+            android:layout_width="0dp"
+            android:layout_height="29dp"
+            android:background="@drawable/img_solid_blue"
+            android:layout_marginTop="8dp"
+            android:text=" 3 Relawan"
+            android:textColor="#fff"
+            android:paddingStart="5dp"
+            android:layout_marginEnd="16dp"
+            android:paddingEnd="5dp"
+            android:drawableStart="@drawable/ic_group"
+            android:textAllCaps="false"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintTop_toBottomOf="@id/txtPendaftar"
+            app:layout_constraintStart_toEndOf="@id/btnKoor"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
         <ImageView
             android:id="@+id/imgChildRelawan"
@@ -147,7 +183,7 @@
             android:layout_marginTop="8dp"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
-            android:text="15 Desember 2019, 17.00 WIB"
+            android:text="15 Desember 2019, 15.00 WIB"
             android:textColor="#00beed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtTanggalChild" />
@@ -232,6 +268,8 @@
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:text="Pendaftar"
+            android:textSize="18sp"
+            android:textStyle="bold"
             android:textColor="@android:color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btnMaps" />

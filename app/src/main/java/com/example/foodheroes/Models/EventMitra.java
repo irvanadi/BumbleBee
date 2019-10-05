@@ -2,13 +2,12 @@ package com.example.foodheroes.Models;
 
 public class EventMitra {
 
-    String namaMitra, alamatMitra, deskripsiMitra, namaPenerima, alamatPenerima, kategori, tanggal, porsi, koor, relawan;
+    String namaMitra, alamatMitra, deskripsiMitra, namaPenerima, alamatPenerima, kategori, tanggal, jam, porsi, koo1, relawan1, relawan2, relawan3, relawan4;
 
     public EventMitra(){
-
     }
 
-    public EventMitra(String namaMitra, String alamatMitra, String deskripsiMitra, String namaPenerima, String alamatPenerima, String kategori, String tanggal, String porsi, String koor, String relawan) {
+    public EventMitra(String namaMitra, String alamatMitra, String deskripsiMitra, String namaPenerima, String alamatPenerima, String kategori, String tanggal, String jam, String porsi, String koo1, String relawan1, String relawan2, String relawan3, String relawan4) {
         this.namaMitra = namaMitra;
         this.alamatMitra = alamatMitra;
         this.deskripsiMitra = deskripsiMitra;
@@ -16,9 +15,13 @@ public class EventMitra {
         this.alamatPenerima = alamatPenerima;
         this.kategori = kategori;
         this.tanggal = tanggal;
+        this.jam = jam;
         this.porsi = porsi;
-        this.koor = koor;
-        this.relawan = relawan;
+        this.koo1 = koo1;
+        this.relawan1 = relawan1;
+        this.relawan2 = relawan2;
+        this.relawan3 = relawan3;
+        this.relawan4 = relawan4;
     }
 
     public String getNamaMitra() {
@@ -77,6 +80,14 @@ public class EventMitra {
         this.tanggal = tanggal;
     }
 
+    public String getJam() {
+        return jam;
+    }
+
+    public void setJam(String jam) {
+        this.jam = jam;
+    }
+
     public String getPorsi() {
         return porsi;
     }
@@ -85,19 +96,43 @@ public class EventMitra {
         this.porsi = porsi;
     }
 
-    public String getKoor() {
-        return koor;
+    public String getKoo1() {
+        return koo1;
     }
 
-    public void setKoor(String koor) {
-        this.koor = koor;
+    public void setKoo1(String koo1) {
+        this.koo1 = koo1;
     }
 
-    public String getRelawan() {
-        return relawan;
+    public String getRelawan1() {
+        return relawan1;
     }
 
-    public void setRelawan(String relawan) {
-        this.relawan = relawan;
+    public void setRelawan1(String relawan1) {
+        this.relawan1 = relawan1;
+    }
+
+    public String getRelawan2() {
+        return relawan2;
+    }
+
+    public void setRelawan2(String relawan2) {
+        this.relawan2 = relawan2;
+    }
+
+    public String getRelawan3() {
+        return relawan3;
+    }
+
+    public void setRelawan3(String relawan3) {
+        this.relawan3 = relawan3;
+    }
+
+    public String getRelawan4() {
+        return relawan4;
+    }
+
+    public void setRelawan4(String relawan4) {
+        this.relawan4 = relawan4;
     }
 }
