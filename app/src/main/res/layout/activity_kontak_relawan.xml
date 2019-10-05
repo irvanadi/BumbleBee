@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".KontakRelawanActivity">
+
+    <Button
+        android:id="@+id/btnFormKoor"
+        android:layout_width="0dp"
+        android:layout_height="29dp"
+        android:background="@drawable/img_solid_orange"
+        android:layout_marginTop="8dp"
+        android:text=" 0 Koordinator"
+        android:textColor="#fff"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintHorizontal_weight="1"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:drawableStart="@drawable/ic_group"
+        android:textAllCaps="false"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnFormRelawan"/>
+
+    <Button
+        android:id="@+id/btnFormRelawan"
+        android:layout_width="0dp"
+        android:layout_height="29dp"
+        android:background="@drawable/img_solid_blue"
+        android:layout_marginTop="8dp"
+        android:text=" 4 Relawan"
+        android:textColor="#fff"
+        android:paddingStart="5dp"
+        android:layout_marginEnd="16dp"
+        android:paddingEnd="5dp"
+        android:drawableStart="@drawable/ic_group"
+        android:textAllCaps="false"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnFormKoor"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Koordinator"
+        android:layout_marginTop="40dp"
+        android:textStyle="bold"
+        android:textColor="#5E5E5E"
+        android:textSize="22dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/caption"
+        app:layout_constraintTop_toBottomOf="@id/btnFormKoor"/>
+
+    <TextView
+        android:id="@+id/caption"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textColor="#4799d4"
+        android:textSize="18dp"
+        android:text="Eka Hirinda Zulfa"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        />
+
+    <ImageView
+        android:id="@+id/imgwa"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/whatsapp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/title"
+        app:layout_constraintBottom_toBottomOf="@id/caption"/>
+
+    <ImageView
+        android:id="@+id/imgSeparator"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="10dp"
+        android:background="#e5e5e5"
+        android:contentDescription="Separator"
+        app:layout_constraintTop_toBottomOf="@id/caption"/>
+
+    <TextView
+        android:id="@+id/title2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Relawan 1"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        android:textColor="#5E5E5E"
+        android:textSize="22dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/caption2"
+        app:layout_constraintTop_toBottomOf="@id/imgSeparator"/>
+
+    <TextView
+        android:id="@+id/caption2"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textColor="#4799d4"
+        android:textSize="18dp"
+        android:text="Irvan Adi"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title2"
+        />
+
+    <ImageView
+        android:id="@+id/imgwa2"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/whatsapp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/title2"
+        app:layout_constraintBottom_toBottomOf="@id/caption2"/>
+
+    <ImageView
+        android:id="@+id/imgSeparator2"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="10dp"
+        android:background="#e5e5e5"
+        android:contentDescription="Separator"
+        app:layout_constraintTop_toBottomOf="@id/caption2"/>
+
+    <TextView
+        android:id="@+id/title3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Relawan 2"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        android:textColor="#5E5E5E"
+        android:textSize="22dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/caption3"
+        app:layout_constraintTop_toBottomOf="@id/imgSeparator2"/>
+
+    <TextView
+        android:id="@+id/caption3"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textColor="#4799d4"
+        android:textSize="18dp"
+        android:text="Ayub Rizki Wardhana"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title3"
+        />
+
+    <ImageView
+        android:id="@+id/imgwa3"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/whatsapp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/title3"
+        app:layout_constraintBottom_toBottomOf="@id/caption3"/>
+
+    <ImageView
+        android:id="@+id/imgSeparator3"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="10dp"
+        android:background="#e5e5e5"
+        android:contentDescription="Separator"
+        app:layout_constraintTop_toBottomOf="@id/caption3"/>
+
+    <TextView
+        android:id="@+id/title4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Relawan 3"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        android:textColor="#5E5E5E"
+        android:textSize="22dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/caption4"
+        app:layout_constraintTop_toBottomOf="@id/imgSeparator3"/>
+
+    <TextView
+        android:id="@+id/caption4"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textColor="#4799d4"
+        android:textSize="18dp"
+        android:text="Agung Waskito"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title4"
+        />
+
+    <ImageView
+        android:id="@+id/imgwa4"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/whatsapp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/title4"
+        app:layout_constraintBottom_toBottomOf="@id/caption4"/>
+
+    <ImageView
+        android:id="@+id/imgSeparator4"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="10dp"
+        android:background="#e5e5e5"
+        android:contentDescription="Separator"
+        app:layout_constraintTop_toBottomOf="@id/caption4"/>
+
+    <TextView
+        android:id="@+id/title5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Relawan 4"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        android:textColor="#5E5E5E"
+        android:textSize="22dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/caption5"
+        app:layout_constraintTop_toBottomOf="@id/imgSeparator4"/>
+
+    <TextView
+        android:id="@+id/caption5"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textColor="#4799d4"
+        android:textSize="18dp"
+        android:text="Nashir Jamali"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title5"
+        />
+
+    <ImageView
+        android:id="@+id/imgwa5"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/whatsapp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/title5"
+        app:layout_constraintBottom_toBottomOf="@id/caption5"/>
+
+    <ImageView
+        android:id="@+id/imgSeparator5"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="10dp"
+        android:background="#e5e5e5"
+        android:contentDescription="Separator"
+        app:layout_constraintTop_toBottomOf="@id/caption5"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
