@@ -20,6 +20,13 @@ import com.example.foodheroes.Activities.MainActivity;
 import com.example.foodheroes.Models.EventMitra;
 import com.example.foodheroes.Models.Mitra;
 import com.example.foodheroes.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -27,7 +34,8 @@ public class MitraAdapter extends RecyclerView.Adapter<MitraAdapter.ViewHolder> 
 
     private Context context;
     private ArrayList<EventMitra> results;
-    String NumberPhone;
+    String NumberPhone, UID, NamaMitra, jam, tanggal;
+    FirebaseUser firebaseUser;
 
     public MitraAdapter(Context context, ArrayList<EventMitra> results) {
         this.context = context;
@@ -48,7 +56,12 @@ public class MitraAdapter extends RecyclerView.Adapter<MitraAdapter.ViewHolder> 
         holder.txtnamaMitra.setText(result.getNamaMitra());
         holder.txtTanggal.setText(result.getTanggal());
 
-        Glide.with(context)
+        NamaMitra = result.getNamaMitra();
+        jam = result.getJam();
+        tanggal = result.getTanggal();
+
+
+                Glide.with(context)
                 .asBitmap()
                 .load(R.drawable.food)
                 .into(holder.imgMitra);
@@ -61,13 +74,14 @@ public class MitraAdapter extends RecyclerView.Adapter<MitraAdapter.ViewHolder> 
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private TextView txtnamaMitra, txtTanggal, txtDetail, txtDaftar;
+        private TextView txtnamaMitra, txtTanggal, txtDetail, txtDaftar, txtJam;
         Button btnKoor, btnRelawan;
         private ImageView imgMitra;
 
         public ViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
+
 
             txtnamaMitra = itemView.findViewById(R.id.txtNamaMitra);
             txtTanggal = itemView.findViewById(R.id.txtTanggal);
@@ -76,6 +90,7 @@ public class MitraAdapter extends RecyclerView.Adapter<MitraAdapter.ViewHolder> 
             btnKoor = itemView.findViewById(R.id.btnKoor);
             txtDaftar = itemView.findViewById(R.id.txtDaftar);
             imgMitra = itemView.findViewById(R.id.imgMitra);
+            txtJam = itemView.findViewById(R.id.txtJam);
 
             txtDetail.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -117,8 +132,30 @@ public class MitraAdapter extends RecyclerView.Adapter<MitraAdapter.ViewHolder> 
         private void toDaftar(){
             MainActivity mainActivity = (MainActivity) itemView.getContext();
 
+            firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+            NumberPhone = firebaseUser.getPhoneNumber();
+            Log.d("CurrentID",firebaseUser.getPhoneNumber());
+
+            Query query = FirebaseDatabase.getInstance().getReference().child("User").orderByChild("numberPhone").equalTo(NumberPhone);
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                        UID = snapshot.getKey();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
             Intent intent = new Intent(mainActivity, FormRelawanActivity.class);
             intent.putExtra("NumberPhone",NumberPhone);
+            intent.putExtra("NamaMitra",NamaMitra);
+            intent.putExtra("jam",jam);
+            intent.putExtra("tanggal",tanggal);
             Log.d("NumPhone", "MitraAdapter"+NumberPhone);
             mainActivity.startActivity(intent);
 

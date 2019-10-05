@@ -2,18 +2,16 @@ package com.example.foodheroes.Models;
 
 public class NotificationSet {
 
-    String namaMitra, alamatMitra, jam, tanggal, idEvent, umur, position, keterangan;
+    String namaMitra, jam, tanggal, umur, position, keterangan;
 
     public NotificationSet(){
 
     }
 
-    public NotificationSet(String namaMitra, String alamatMitra, String jam, String tanggal, String idEvent, String umur, String position, String keterangan) {
+    public NotificationSet(String namaMitra, String jam, String tanggal, String umur, String position, String keterangan) {
         this.namaMitra = namaMitra;
-        this.alamatMitra = alamatMitra;
         this.jam = jam;
         this.tanggal = tanggal;
-        this.idEvent = idEvent;
         this.umur = umur;
         this.position = position;
         this.keterangan = keterangan;
@@ -25,14 +23,6 @@ public class NotificationSet {
 
     public void setNamaMitra(String namaMitra) {
         this.namaMitra = namaMitra;
-    }
-
-    public String getAlamatMitra() {
-        return alamatMitra;
-    }
-
-    public void setAlamatMitra(String alamatMitra) {
-        this.alamatMitra = alamatMitra;
     }
 
     public String getJam() {
@@ -49,14 +39,6 @@ public class NotificationSet {
 
     public void setTanggal(String tanggal) {
         this.tanggal = tanggal;
-    }
-
-    public String getIdEvent() {
-        return idEvent;
-    }
-
-    public void setIdEvent(String idEvent) {
-        this.idEvent = idEvent;
     }
 
     public String getUmur() {

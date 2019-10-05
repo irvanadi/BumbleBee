@@ -47,12 +47,10 @@ public class FormRelawanActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         namaMitra = intent.getStringExtra("NamaMitra");
-        alamatMitra = intent.getStringExtra("AlamatPenerima");
         jam = intent.getStringExtra("jam");
         tanggal = intent.getStringExtra("tanggal");
-        idKey = intent.getStringExtra("idKey");
+//        idKey = intent.getStringExtra("idKey");
 //        Log.d("Form",NumberPhone);
-        Log.d("idKey", idKey);
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         NumberPhone = firebaseUser.getPhoneNumber();
         Log.d("CurrentID",firebaseUser.getPhoneNumber());
@@ -87,24 +85,20 @@ public class FormRelawanActivity extends AppCompatActivity {
                 Log.d("testing123", position);
 
                 Log.d("UID123", UID);
-                MitraReff = FirebaseDatabase.getInstance().getReference().child("User").child(UID);
+                MitraReff = FirebaseDatabase.getInstance().getReference().child("User").child(UID).child("Event");
                 String Umur = txtUmur.getText().toString();
                 String Keterangan = txtKeterangan.getText().toString();
 
                 notificationSet = new NotificationSet();
-                notificationSet.setIdEvent(idKey);
                 notificationSet.setNamaMitra(namaMitra);
-                notificationSet.setAlamatMitra(alamatMitra);
                 notificationSet.setPosition(position);
                 notificationSet.setTanggal(tanggal);
                 notificationSet.setJam(jam);
                 notificationSet.setUmur(Umur);
                 notificationSet.setKeterangan(Keterangan);
                 MitraReff.push().setValue(notificationSet);
-
-
-//                Intent intent = new Intent(FormRelawanActivity.this, CongratsRelawanActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(FormRelawanActivity.this, CongratsRelawanActivity.class);
+                startActivity(intent);
             }
         });
     }

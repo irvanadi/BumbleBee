@@ -20,8 +20,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.foodheroes.Activities.DetailMitraActivity;
 import com.example.foodheroes.Activities.LoginActivity;
 import com.example.foodheroes.Activities.VerificationLoginActivity;
+import com.example.foodheroes.Adapter.DetailMitraAdapter;
 import com.example.foodheroes.Adapter.MitraAdapter;
 import com.example.foodheroes.Models.EventMitra;
 import com.example.foodheroes.Models.Mitra;
@@ -56,6 +58,7 @@ public class RelawanFragment extends Fragment {
     RecyclerView recListMitra;
     TextView txtDataKosong;
     ImageView imgSeparator;
+    String idKey;
 
     public RelawanFragment() {
         // Required empty public constructor

@@ -36,20 +36,6 @@ public class PenerimaFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_penerima, container, false);
 
-        reference = FirebaseDatabase.getInstance().getReference().child("User").child("-LpoVDjGb7_eY0w669DH").child("email");
-
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String asd = dataSnapshot.getValue().toString();
-                Log.d("asd123", asd);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
         return view;
     }
 }
