@@ -3,11 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.foodheroes">
 
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -15,16 +10,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".KontakRelawanActivity"></activity>
-        <activity android:name=".Activities.SplashActivity">
+        <activity android:name=".Mitra.Activities.RegisterMitraActivity"></activity>
+        <activity android:name=".Mitra.Activities.VerificationMitraActivity" />
+        <activity android:name=".Mitra.Activities.LoginMitraActivity" />
+        <activity android:name=".Mitra.Activities.MainMitraActivity" />
+        <activity android:name=".Relawan.Activities.KontakRelawanActivity" />
+        <activity android:name=".Relawan.Activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.LoginSelectActivity"></activity>
-        <activity android:name=".Activities.NotificationActivity" />
+        <activity android:name=".Relawan.Activities.LoginSelectActivity" />
+        <activity android:name=".Relawan.Activities.NotificationActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -34,10 +33,10 @@
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
         <activity
-            android:name=".Activities.PenerimaMapsActivity"
+            android:name=".Relawan.Activities.PenerimaMapsActivity"
             android:label="@string/title_activity_penerima_maps" />
         <activity
-            android:name=".Activities.MapsActivity"
+            android:name=".Relawan.Activities.MapsActivity"
             android:label="@string/title_activity_maps" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -47,26 +46,26 @@
              sign the APK for publishing.
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
-        <activity android:name=".Activities.MapsRelawanActivity" />
-        <activity android:name=".Activities.CongratsRelawanActivity" />
-        <activity android:name=".Activities.FormRelawanActivity" />
+        <activity android:name=".Relawan.Activities.MapsRelawanActivity" />
+        <activity android:name=".Relawan.Activities.CongratsRelawanActivity" />
+        <activity android:name=".Relawan.Activities.FormRelawanActivity" />
         <activity
-            android:name=".Activities.DetailMitraActivity"
+            android:name=".Relawan.Activities.DetailMitraActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activities.VerificationLoginActivity"
+            android:name=".Relawan.Activities.VerificationLoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activities.RegisterActivity"
+            android:name=".Relawan.Activities.RegisterActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activities.LoginActivity"
+            android:name=".Relawan.Activities.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activities.SliderActivity"
+            android:name=".Relawan.Activities.SliderActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activities.MainActivity"
+            android:name=".Relawan.Activities.MainActivity"
             android:screenOrientation="portrait" />
 
         <meta-data
@@ -76,5 +75,10 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
     </application>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

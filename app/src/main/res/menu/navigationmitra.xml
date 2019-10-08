@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="Home"/>
+
+    <item
+        android:id="@+id/navigation_relawan"
+        android:icon="@drawable/hands_helping_solid"
+        android:title="Mitra" />
+
+    <item
+        android:id="@+id/navigation_penerima"
+        android:icon="@drawable/ic_group_1"
+        android:title="Penerima" />
+
+    <item
+        android:id="@+id/navigation_akun"
+        android:icon="@drawable/ic_account_circle_black_24dp"
+        android:title="Akun" />
+
+
+</menu>

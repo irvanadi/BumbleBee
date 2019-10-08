@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".KontakRelawanActivity">
+    tools:context=".Relawan.Activities.KontakRelawanActivity">
 
     <Button
         android:id="@+id/btnFormKoor"
@@ -13,7 +13,7 @@
         android:layout_height="29dp"
         android:background="@drawable/img_solid_orange"
         android:layout_marginTop="8dp"
-        android:text=" 0 Koordinator"
+        android:text=" 1 Koordinator"
         android:textColor="#fff"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"

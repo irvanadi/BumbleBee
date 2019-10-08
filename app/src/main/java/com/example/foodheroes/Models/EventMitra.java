@@ -2,7 +2,7 @@ package com.example.foodheroes.Models;
 
 public class EventMitra {
 
-    String namaMitra, alamatMitra, deskripsiMitra, namaPenerima, alamatPenerima, kategori, tanggal, jam, porsi, koo1, relawan1, relawan2, relawan3, relawan4;
+    String namaMitra, alamatMitra, deskripsiMitra, namaPenerima, alamatPenerima, kategori, tanggal, jam, porsi, koor;
 
     public EventMitra(){
     }
@@ -17,11 +17,7 @@ public class EventMitra {
         this.tanggal = tanggal;
         this.jam = jam;
         this.porsi = porsi;
-        this.koo1 = koo1;
-        this.relawan1 = relawan1;
-        this.relawan2 = relawan2;
-        this.relawan3 = relawan3;
-        this.relawan4 = relawan4;
+        this.koor = koor;
     }
 
     public String getNamaMitra() {
@@ -96,43 +92,11 @@ public class EventMitra {
         this.porsi = porsi;
     }
 
-    public String getKoo1() {
-        return koo1;
+    public String getKoor() {
+        return koor;
     }
 
-    public void setKoo1(String koo1) {
-        this.koo1 = koo1;
-    }
-
-    public String getRelawan1() {
-        return relawan1;
-    }
-
-    public void setRelawan1(String relawan1) {
-        this.relawan1 = relawan1;
-    }
-
-    public String getRelawan2() {
-        return relawan2;
-    }
-
-    public void setRelawan2(String relawan2) {
-        this.relawan2 = relawan2;
-    }
-
-    public String getRelawan3() {
-        return relawan3;
-    }
-
-    public void setRelawan3(String relawan3) {
-        this.relawan3 = relawan3;
-    }
-
-    public String getRelawan4() {
-        return relawan4;
-    }
-
-    public void setRelawan4(String relawan4) {
-        this.relawan4 = relawan4;
+    public void setKoor(String koo1) {
+        this.koor = koo1;
     }
 }

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".Relawan.Activities.LoginActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:id="@+id/imgLogoFHLogin"
+            android:layout_width="250dp"
+            android:layout_height="120dp"
+            android:src="@drawable/logo_food_heroes"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="100dp"/>
+
+        <TextView
+            android:id="@+id/txtLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login Sebagai Mitra"
+            android:textColor="#000"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="100dp"
+            app:layout_constraintTop_toBottomOf="@id/imgLogoFHLogin"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+
+        <LinearLayout
+            android:id="@+id/LinearCCP"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            app:layout_constraintTop_toBottomOf="@id/txtLogin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="36dp"
+            android:focusable="auto"
+            android:gravity="center_vertical">
+
+            <com.hbb20.CountryCodePicker
+                android:id="@+id/ccp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:ccp_countryPreference="us,in"
+                app:ccp_autoDetectCountry="true"
+                android:clickable="false"
+                app:ccp_showArrow="false"
+                app:ccp_showPhoneCode="true"
+                />
+
+            <EditText
+                android:id="@+id/txtNumberPhone"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:drawableStart="@drawable/ic_phone_black_24dp"
+                android:drawablePadding="12dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:drawableTint="#aeaeb2"
+                android:hint="No. Telepon"
+                android:background="#F3F3F3"
+                android:singleLine="true"
+                android:inputType="phone"/>
+
+        </LinearLayout>
+
+
+        <EditText
+            android:id="@+id/txtPassword"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp"
+            android:drawableStart="@drawable/ic_vpn_key_black_24dp"
+            android:drawableTint="#aeaeb2"
+            android:drawablePadding="12dp"
+            android:paddingStart="12dp"
+            android:hint="Password"
+            android:paddingEnd="12dp"
+            android:background="#F3F3F3"
+            android:singleLine="true"
+            android:inputType="textPassword"
+            app:layout_constraintTop_toBottomOf="@id/LinearCCP"/>
+
+
+        <TextView
+            android:id="@+id/txtLupaPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lupa Password ?"
+            android:clickable="true"
+            android:fontFamily=""
+            android:textColor="#EEAA54"
+            android:layout_marginTop="4dp"
+            app:layout_constraintTop_toBottomOf="@id/txtPassword"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:textAllCaps="false"
+            android:background="#EEAA54"
+            android:textColor="#fff"
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@id/txtLupaPassword"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/txtToRegist1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:text="Belum memiliki akun ?"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/btnLogin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/txtToRegist2"
+            app:layout_constraintHorizontal_weight="1"
+            android:textAlignment="viewEnd"
+            />
+
+        <TextView
+            android:id="@+id/txtToRegist2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="#EEAA54"
+            android:text="Daftar Sekarang"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintTop_toBottomOf="@id/btnLogin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintStart_toEndOf="@id/txtToRegist1"
+            android:textAlignment="viewStart"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
